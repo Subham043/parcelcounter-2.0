@@ -1,0 +1,18 @@
+/* .main-product-slider{
+    padding-bottom: 1rem;
+} */
+
+.main-product-slider .swiper-slide {
+    width: 85% !important;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #222;
+}
+.main-product-slider .swiper-slide:last-child {
+    --padding-end: var(--ion-padding, 16px);   
+    padding-inline-end: 8px;
+}
+
+.main-product-slider .swiper-slide .product-card-main{
+    margin-top: 0 !important;
+}

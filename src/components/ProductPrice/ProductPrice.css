@@ -1,0 +1,11 @@
+.product-card-price{
+    padding: 0;
+    margin: 5px 0;
+    text-decoration: none;
+    /* text-align: center; */
+    font-size: 14px;
+}
+
+.product-card-price small{
+    font-size: 14px;
+}

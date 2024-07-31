@@ -1,0 +1,10 @@
+.checkout-modal .billing-info-section-card-active, .checkout-modal .billing-info-section-card{
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.checkout-modal .billing-info-section-card-img{
+    width: 40px;
+    object-fit: contain;
+    margin-right: 10px;
+}

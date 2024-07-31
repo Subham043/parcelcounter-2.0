@@ -1,0 +1,175 @@
+.product-card-text{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 400;
+}
+.product-card{
+    margin-inline:0px !important;
+    /* margin-top:0px !important; */
+    margin-bottom:0px !important;
+    padding-inline-start: 0;
+    padding-inline-end: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-radius: 4px;
+}
+.product-card-header{
+    padding-inline: 5px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    flex-direction: column !important;
+}
+.product-card-image{
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 5px;
+}
+.add-to-cart-btn{
+    --border-radius: 4px;
+    --padding-top: 8px;
+    --padding-bottom: 8px;
+    --padding-start: 1.1em;
+    --padding-end: 1.1em;
+    margin-inline: 2px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    min-height: 30px;
+}
+.product-price-modal-btn{
+    --box-shadow: 0 !important;
+    --background: transparent !important;
+    --background-hover: transparent !important;
+    --background-focused: transparent !important;
+    --color: #222 !important;
+    --padding-top: 0px !important;
+    --padding-bottom: 0px !important;
+    --padding-start: 0 !important;
+    --padding-end: 0 !important;
+    width: 100%;
+    margin: 0;
+    min-height: auto;
+}
+
+.product-price-icon{
+    font-size: 20px;
+    margin-left: 5px;
+}
+
+.post-price-modal{
+    --height: auto;
+}
+
+/* main product card css */
+
+.product-card-main{
+    height: 300px;
+    border-radius: 0px !important;
+    overflow: hidden;
+    margin-top: 15px !important;
+    width: 100%;
+    border: 1px solid #222;
+}
+.product-card-main .product-main-link{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.product-card-main .product-main-link .product-main-img-btn{
+    background-color: transparent;
+    outline: none;
+    border: none;
+}
+
+.product-card-main .product-main-link .product-card-image{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.product-card-main .product-text-container-gradient{
+    background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0, 0, 0, 0.7) 53%, transparent 100%);
+    position: relative;
+}
+
+.product-card-main .product-text-container-gradient .product-card-header-container h4{
+    color: white;
+    margin: 0;
+    font-size: 1.1rem;
+    font-family: system-ui;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    margin-top: 20px;
+    text-align: left;
+}
+
+.product-card-main .product-text-container-gradient .product-card-price-container{
+    padding: 10px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 1px solid #ccc;
+}
+
+.product-card-main .product-text-container-gradient .product-card-price-container .col-auto{
+    width: auto;
+}
+.product-card-main .product-text-container-gradient .product-card-price-container .col-auto .product-card-price{
+    margin: 0;
+    color: white;
+    font-size: 0.9rem;
+    font-family: system-ui;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.product-card-main .product-text-container-gradient .product-card-price-container .col-auto .product-card-price small{
+    font-size: 0.9rem;
+    text-transform: capitalize;
+}
+.product-card-main .product-text-container-gradient .product-card-price-container .col-auto .product-price-modal-btn{
+    --color: white !important;
+    text-align: left !important;
+    width: auto;
+    font-size: 0.8rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    margin-top: 5px;
+}
+.product-card-main .product-text-container-gradient .product-card-price-container .col-auto .product-price-modal-btn p{
+    margin: 0;
+}
+
+.product-card-main .product-text-container-gradient .product-card-price-container .col-auto .add-to-cart-btn{
+    --ion-color-base: white !important;
+    --ion-color-contrast: black !important;
+    --color: black !important;
+    color: black !important;
+    font-weight: 700;
+}
+
+.product-card-main .product-text-container-gradient .product-card-price-container .col-auto .col-cart-quantity-btn{
+    --ion-color-base: white !important;
+    --ion-color-contrast: black !important;
+    --color: black !important;
+    color: black !important;
+    font-weight: 700;
+}
+
+.product-card-main .product-text-container-gradient .product-card-price-container .cart-quantity-col{
+    max-width: 150px;
+}

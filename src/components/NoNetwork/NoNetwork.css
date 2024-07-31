@@ -1,0 +1,33 @@
+.img-empty-cart-card{
+    height: 100px;
+    object-fit: contain;
+    margin-top: 10px;
+}
+.empty-cart-card{
+    border-radius: 4px;
+}
+.empty-cart-card-header{
+    padding-inline: 5px !important;
+    padding-top: 5px !important;
+    padding-bottom: 10px !important;
+    flex-direction: column !important;
+}
+.empty-cart-card-button{
+    --border-radius: 4px;
+    --padding-top: 8px;
+    --padding-bottom: 8px;
+    --padding-start: 1.1em;
+    --padding-end: 1.1em;
+    margin-inline: 2px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    min-height: 30px;
+}
+
+.centered-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}

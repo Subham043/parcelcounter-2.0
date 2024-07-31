@@ -1,0 +1,57 @@
+.main-previous-order-slider .order-product-card-price-container .product-card-price {
+    margin: 0;
+    font-size: 1rem;
+    font-family: system-ui;
+    letter-spacing: 1px;
+    text-align: left;
+}
+
+.main-previous-order-slider .order-product-card-price-container .product-price-modal-btn {
+    --color: #222 !important;
+    text-align: left !important;
+    width: auto;
+    font-size: 0.9rem;
+    color: #222;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    margin-top: 5px;
+}
+
+.main-previous-order-slider .order-product-card-price-container .product-price-modal-btn p {
+    margin: 0;
+}
+
+
+.main-product-slider.main-previous-order-slider .cart-item-container .cart-item-row .cart-item-quantity{
+    width: 35%;
+    justify-content: flex-end;
+}
+
+.main-product-slider.main-previous-order-slider .cart-item-container .cart-item-row .cart-item-col{
+    width: 48%;
+    flex: 1;
+}
+
+.main-product-slider.main-previous-order-slider .cart-item-container .cart-item-row .cart-item-quantity .cart-quantity-main-holder{
+    max-width: 100%;
+}
+
+.main-product-slider.main-previous-order-slider .cart-item-container .cart-item-row .cart-item-img-container .cart-card-item-img {
+    height: auto;
+    width: 50px;
+    object-fit: contain;
+    object-position: left;
+}
+
+.previous-order-item-name{
+    text-align: left;
+}
+
+.previous-order-cart-quantity .cart-quantity-main-holder{
+    max-width: unset !important;
+}
+
+.previous-order-cart-quantity{
+    width: auto !important;
+}

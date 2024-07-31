@@ -1,0 +1,44 @@
+.order-card{
+    width: 100%;
+    padding: 10px;
+    background-color: white;
+    background: var(--ion-card-background, var(--ion-item-background, var(--ion-background-color, #fff)));
+    color: var(--ion-card-color, var(--ion-item-color, var(--ion-color-step-550, #737373)));
+    border-radius: 4px;
+    font-size: 0.875rem;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 1px -2px, rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.order-card-product-label{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.order-card-product-names{
+    color: #222;
+    font-size: 1rem !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.order-card-product-price{
+    color: #222;
+    font-size: 17px !important;
+    margin: 0;
+}
+
+.order-card-product-order-id, .order-card-product-timestamp{
+    margin: 0;
+    font-size: 14px;
+    line-height: 18px;
+}

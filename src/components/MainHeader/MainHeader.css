@@ -1,0 +1,24 @@
+.main-header-logo{
+    height: 50px;
+    object-fit: contain;
+}
+.main-header-logo-holder{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 8px;
+}
+.main-header-logo-text{
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+}
+
+.main-header-button{
+    font-size: 1.4rem;
+}

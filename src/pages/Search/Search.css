@@ -1,0 +1,6 @@
+.search-input .searchbar-input-container.sc-ion-searchbar-md{
+    --box-shadow:none;
+}
+.search-input .searchbar-input.sc-ion-searchbar-md{
+    border: 1px solid #222;
+}

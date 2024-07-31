@@ -1,0 +1,13 @@
+.main-previous-order-slider .swiper{
+    padding-bottom: 10px;
+}
+
+.main-product-slider.main-previous-order-slider .swiper-slide{
+    width: 90% !important;
+    border: 1px dashed #ccc;
+    border-radius: 5px;
+}
+
+.main-product-slider.main-previous-order-slider .cart-item-container{
+    border: none;
+}

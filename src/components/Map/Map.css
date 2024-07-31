@@ -1,0 +1,26 @@
+.map-selection-card .delivery-address-header{
+  border-radius: 5px;
+}
+
+.address-suggestion-container{
+    width: 100%;
+    padding: 15px 10px;
+    border-bottom: 1px dashed #868686;
+}
+
+.address-suggestion-container p{
+    margin: 0;
+    padding: 0;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    font-weight: 500;
+    color: #222;
+    text-align: left;
+}
+
+.three-line-text{
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}

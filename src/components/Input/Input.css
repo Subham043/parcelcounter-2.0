@@ -1,0 +1,16 @@
+.input-eye-button{
+    font-size: 18px !important;
+    margin: 0;
+    --padding-start: .6em;
+    --padding-end: 0;
+}
+
+.main-input{
+    --highlight-color: #222;
+}
+
+.auth-input-item{
+    --background: transparent;
+    background: transparent;
+    --border-color:#222;
+}

@@ -1,0 +1,23 @@
+.common-heading-text {
+    display: flex;
+    font-size: 1.2rem;
+}
+.common-heading-text:before, .common-heading-text:after {
+    content: "";
+    flex: 1;
+}
+
+.common-heading-text {
+    align-items: center;
+    margin: 1em -1em;
+}
+.common-heading-text:before, .common-heading-text:after {
+    height: 1px;
+    margin: 0 1em;
+}
+
+.common-heading-text:before, .common-heading-text:after {
+    height: 3px;
+    box-shadow: 0 -0.5px 0 black, 0 0.5px 0 black;
+    border-width: 0;
+}

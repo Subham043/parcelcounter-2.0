@@ -1,0 +1,231 @@
+.cart-card{
+    border-radius: 4px;
+}
+
+.cart-total-price-heading{
+    text-align: center;
+    color: green;
+    padding-left: 5px;
+    padding-left: 5px;
+}
+.cart-total-price-heading h6{
+    font-size: 16px;
+}
+
+.cart-message{
+    text-align: center;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: 20px 0;
+    background-color: green;
+    color: white;
+}
+
+.cart-message p{
+    margin-inline: 15px;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: 500;
+    letter-spacing: 1px;
+    font-size: 14px;
+}
+
+.billing-info-section{
+    margin-inline: 0px;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+.billing-info-cart-heading{
+    margin: 0;
+}
+.billing-info-cart-text{
+    margin: 0;
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.billing-info-section-row{
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 5px;
+    align-items: flex-start;
+    padding: 15px 0;
+    overflow: hidden;
+    overflow-x: scroll;
+}
+
+.billing-info-section-card{
+    flex: 0 0 auto;
+    width: 55%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.billing-info-section-card-active{
+    flex: 0 0 auto;
+    width: 55%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: #eee;
+}
+.billing-info-section-card-text{
+    flex: 1;
+    color: #222;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.billing-info-section-card-text p{
+    color: #222;
+}
+
+.billing-info-section-card-icon {
+    margin: 0;
+    /* margin-inline-end: 12px; */
+    color: #222;
+    font-weight: 500;
+    font-size: 29px;
+    flex: 0 0 auto;
+}
+
+.billing-info-section-card-item{
+    --padding-start: 0 !important;
+    --inner-padding-end: 0 !important;
+}
+
+/* new cart css */
+
+.delivery-address-card{
+    width: 100%;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 1px -2px, rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px;
+}
+
+.delivery-address-card-no-padding{
+    width: 100%;
+    background-color: white;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 1px -2px, rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px;
+}
+
+.delivery-address-card h6{
+    font-size: 1rem;
+    margin: 0;
+    display: flex;
+    gap: 5px;
+    font-family: system-ui;
+}
+.delivery-address-card .svg-icon{
+    font-size: 20px;
+}
+
+.delivery-address-card .delivery-card-row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+.delivery-address-card .delivery-card-row .delivery-detail{
+    flex: 1;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: auto;
+    display: block;
+    padding: 7px 10px;
+}
+
+.delivery-address-card .delivery-card-row .delivery-detail p{
+    margin: 0;
+    color: #434343;
+    font-family: system-ui;
+    font-size: 0.9rem;
+}
+
+.delivery-address-card .delivery-card-row .delivery-select{
+    width: auto;
+}
+.delivery-address-card .delivery-card-row .delivery-select button, .delivery-address-card .delivery-card-row .delivery-select a{
+    background-color: #000;
+    padding: 7px 12px;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.delivery-address-card-no-padding .cart-total-price-heading{
+    padding: 10px;
+    background-color: #dede;
+    margin-bottom: 10px;
+}
+.delivery-address-card-no-padding .cart-total-price-heading h6{
+    margin: 0;
+    font-size: 14px;
+    letter-spacing: 2px;
+    font-weight: 600;
+    font-family: system-ui;
+}
+
+.delivery-address-card-no-padding .cart-divider{
+    padding: 5px 5px;
+    border-bottom: 1px dashed var(--ion-item-border-color, var(--ion-border-color, var(--ion-color-step-150, rgba(0, 0, 0, 0.13))));
+    border-top: none;
+}
+.delivery-address-card-no-padding .cart-divider:last-child{
+    border-bottom: none;
+}
+.delivery-address-card-no-padding .cart-divider .cart-text{
+    font-family: system-ui;
+    font-weight: 400;
+    font-size: 14.5px;
+}
+
+.delivery-address-card-no-padding .cart-divider .cart-text b{
+    font-family: system-ui;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.delivery-address-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #222;
+    padding: 10px 10px;
+    color: white;
+    border-radius: 5px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.delivery-address-header .delivery-select button, .delivery-address-header .delivery-select a{
+    background-color: #fff;
+    padding: 7px 12px;
+    color: #222;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.cart-charge-info{
+    font-size: 0.8rem;
+    color: #5d7144;
+}

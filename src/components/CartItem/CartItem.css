@@ -1,0 +1,107 @@
+.cart-divider{
+    --padding-start: 5px;
+    --inner-padding-end: 5px;
+    --background:white;
+    --color: #222;
+    border-top: 1px solid var(--ion-item-border-color, var(--ion-border-color, var(--ion-color-step-150, rgba(0, 0, 0, 0.13))));
+    border-bottom: 1px solid var(--ion-item-border-color, var(--ion-border-color, var(--ion-color-step-150, rgba(0, 0, 0, 0.13))));
+}
+
+.cart-divider:first-child{
+    border-top: none !important;
+}
+
+.cart-card-item-img{
+    height: 55px;
+    object-fit: contain;
+    object-position: left;
+}
+
+.cart-text{
+    color: #222;
+    margin: 0;
+    font-size: 14px;
+}
+
+.cart-card-item-text{
+    font-size: 14px;
+    font-weight: 400;
+    margin: 5px 0;
+}
+
+.cart-card-item-price{
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0 0;
+}
+
+/* cart item 2 css */
+
+.cart-item-container{
+    width: 100%;
+    border-bottom: 1px dashed #ccc;
+    padding: 0 5px;
+}
+
+.cart-item-container:last-child{
+    border-bottom: none;
+}
+
+.cart-item-container .cart-item-row{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    padding: 10px 0;
+    gap: 3px;
+}
+
+.cart-item-container .cart-item-row .cart-item-quantity{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* width: 47%; */
+    flex:1;
+    gap: 3px;
+}
+
+.cart-item-container .cart-item-row .cart-item-col{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 48%;
+}
+.cart-item-container .cart-item-row .cart-item-col .cart-item-img-container{
+    width: auto;
+    overflow: hidden;
+}
+.cart-item-container .cart-item-row .cart-item-col .cart-item-text-container{
+    flex: 1;
+    overflow: hidden;
+}
+.cart-item-container .cart-item-row .cart-item-col .cart-card-item-text{
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    white-space: nowrap;
+    max-width: 80%;
+    max-width: 80%;
+    --color:#222;
+    color:#222;
+    padding: 0;
+    margin: 0;
+}
+
+.cart-item-container .cart-item-row .cart-item-col .cart-card-item-text p{
+    display: block;
+    margin: 0;
+    color:#222;
+}
+
+.cart-item-container .cart-item-row .cart-item-col .cart-item-img-container .cart-card-item-img{
+    height: auto;
+    width: 40px;
+    object-fit: cover;
+    object-position: center;
+}
