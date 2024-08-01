@@ -43,6 +43,7 @@ const openSettings = (app: boolean = false) => {
 
 type Props = {
     isEdit: boolean;
+    displayMap: boolean;
     currentLocation:  {
         lat: number;
         lng: number;
@@ -56,7 +57,7 @@ type Props = {
     setConfirm: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const OlaMap = ({isEdit, currentLocation, setCurrentLocation, mapAddress, setMapAddress, setConfirm}: Props) => {
+const OlaMap = ({isEdit, displayMap, currentLocation, setCurrentLocation, mapAddress, setMapAddress, setConfirm}: Props) => {
   const axiosPrivate = useAxiosPrivate();
   const { toastError } = useToast();
   const [mapReady, setMapReady] = useState(false);
@@ -114,13 +115,17 @@ const OlaMap = ({isEdit, currentLocation, setCurrentLocation, mapAddress, setMap
   const setCurrentLocationHandler = async () => {
     try {
       const currentPosition = await getCurrentPosition();
-      if(isEdit && mapAddress){
+      if(isEdit && displayMap && mapAddress){
         setCurrentLocation({ lat: mapAddress.geometry.location.lat, lng: mapAddress.geometry.location.lng });
-      }else{
+        setLocationPermission(true);
+        return;
+      }
+      if(displayMap){
         setCurrentLocation({ lat: currentPosition.coords.latitude, lng: currentPosition.coords.longitude });
         reverseGeocodingHandler({ lat: currentPosition.coords.latitude, lng: currentPosition.coords.longitude });
+        setLocationPermission(true);
+        return;
       }
-      setLocationPermission(true);
     } catch (error: any) {
       if (error?.message === 'Location services are not enabled') {
         setPermissionDeniedType('disabled')
@@ -132,6 +137,7 @@ const OlaMap = ({isEdit, currentLocation, setCurrentLocation, mapAddress, setMap
   const openSettingHandler = async () => await openSettings(permissionDeniedType === 'denied')
 
   useEffect(() => {
+    if(!displayMap) return;
     (async () => {
       try {
         setLocationPermissionLoading(true)
@@ -147,7 +153,7 @@ const OlaMap = ({isEdit, currentLocation, setCurrentLocation, mapAddress, setMap
     return () => {
       setLocationPermissionLoading(false)
     }
-  }, [])
+  }, [displayMap])
 
   const setMarkerHandler = (params:{lat: number, lng: number}) => {
     if (!mapReady) return;
@@ -161,6 +167,7 @@ const OlaMap = ({isEdit, currentLocation, setCurrentLocation, mapAddress, setMap
   };
 
   useEffect(() => {
+    if(!displayMap) return;
     if (!locationPermission) return;
     if (!mapReady) return;
 
@@ -213,7 +220,7 @@ const OlaMap = ({isEdit, currentLocation, setCurrentLocation, mapAddress, setMap
 
     setMapEl(map);
 
-  }, [mapReady, locationPermission, currentLocation]);
+  }, [displayMap, mapReady, locationPermission, currentLocation]);
 
   const onSearchHandler = async (key: string) => {
     if (key.length < 3) {

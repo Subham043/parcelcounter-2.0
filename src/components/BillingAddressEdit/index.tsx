@@ -171,7 +171,7 @@ const BillingAddressEdit:React.FC<Props> = (props) => {
         {/* <Map currentLocation={currentLocation} setCurrentLocation={setCurrentLocation} markerLocation={markerLocation} setMarkerLocation={setMarkerLocation} mapAddress={mapAddress} setMapAddress={setMapAddress} isEdit={props.isEdit} /> */}
         {
           displayMap ? 
-          <OlaMap currentLocation={currentLocation} setCurrentLocation={setCurrentLocation} mapAddress={mapAddress} setMapAddress={setMapAddress} isEdit={props.isEdit} setConfirm={setDisplayMap} /> : 
+          <OlaMap currentLocation={currentLocation} setCurrentLocation={setCurrentLocation} mapAddress={mapAddress} setMapAddress={setMapAddress} isEdit={props.isEdit} setConfirm={setDisplayMap} displayMap={displayMap} /> : 
           <div className="page-padding mt-1">
             {mapAddress && <div className="delivery-address-card">
               <div className='delivery-address-header'>
