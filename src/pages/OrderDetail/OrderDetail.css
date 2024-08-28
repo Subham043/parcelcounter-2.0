@@ -35,7 +35,7 @@
     color: #222;
     margin: 0;
     font-size: 0.8rem;
-    font-family: system-ui;
+    font-family: 'PTSans', system-ui;
     font-weight: 400;
     letter-spacing: 1px;
 }
@@ -44,7 +44,7 @@
     color: #222;
     margin: 0;
     font-size: 0.8rem;
-    font-family: system-ui;
+    font-family: 'PTSans', system-ui;
     letter-spacing: 1px;
 }
 

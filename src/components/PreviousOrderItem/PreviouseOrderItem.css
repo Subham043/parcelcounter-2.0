@@ -1,7 +1,7 @@
 .main-previous-order-slider .order-product-card-price-container .product-card-price {
     margin: 0;
     font-size: 1rem;
-    font-family: system-ui;
+    font-family: 'PTSans', system-ui;
     letter-spacing: 1px;
     text-align: left;
 }

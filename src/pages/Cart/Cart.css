@@ -125,7 +125,7 @@
     margin: 0;
     display: flex;
     gap: 5px;
-    font-family: system-ui;
+    font-family: 'PTSans', system-ui;
 }
 .delivery-address-card .svg-icon{
     font-size: 20px;
@@ -151,7 +151,7 @@
 .delivery-address-card .delivery-card-row .delivery-detail p{
     margin: 0;
     color: #434343;
-    font-family: system-ui;
+    font-family: 'PTSans', system-ui;
     font-size: 0.9rem;
 }
 
@@ -179,7 +179,7 @@
     font-size: 14px;
     letter-spacing: 2px;
     font-weight: 600;
-    font-family: system-ui;
+    font-family: 'PTSans', system-ui;
 }
 
 .delivery-address-card-no-padding .cart-divider{
@@ -191,13 +191,13 @@
     border-bottom: none;
 }
 .delivery-address-card-no-padding .cart-divider .cart-text{
-    font-family: system-ui;
+    font-family: 'PTSans', system-ui;
     font-weight: 400;
     font-size: 14.5px;
 }
 
 .delivery-address-card-no-padding .cart-divider .cart-text b{
-    font-family: system-ui;
+    font-family: 'PTSans', system-ui;
     font-weight: 600;
     letter-spacing: 2px;
 }

@@ -1,5 +1,31 @@
+@font-face {
+  font-family: 'PTSans';
+  src: url('./fonts/PTSans-Regular.ttf') format('truetype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'PTSans';
+  src: url('./fonts/PTSans-Bold.ttf') format('truetype');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'PTSans';
+  src: url('./fonts/PTSans-Italic.ttf') format('truetype');
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'PTSans';
+  src: url('./fonts/PTSans-BoldItalic.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+}
+
 body{
-    font-family: system-ui !important;
+    font-family: 'PTSans', system-ui !important;
+    --ion-font-family: 'PTSans', system-ui !important;
 }
 
 .no-underline{

@@ -1,4 +1,4 @@
-import { IonCardHeader, IonCol, IonContent, IonImg, IonPage, IonRow, IonSpinner, IonText } from '@ionic/react';
+import { IonCardHeader, IonCol, IonContent, IonImg, IonPage, IonRow, IonSpinner, IonText, useIonRouter } from '@ionic/react';
 import './Product.css';
 import MainHeader from '../../components/MainHeader';
 import { useAxiosPrivate } from '../../hooks/useAxiosPrivate';
@@ -12,6 +12,7 @@ import ViewCartBtn from '../../components/ViewCartBtn';
 import NoData from '../../components/NoData';
 import './Product2.css'
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { useLocation } from 'react-router';
 
 const PAGE_SIZE = 20;
 const CATEGORY_PAGE_SIZE = 10;
@@ -19,9 +20,11 @@ const SUB_CATEGORY_PAGE_SIZE = 10;
 
 const Product2: React.FC = () => {
     const axiosPrivate = useAxiosPrivate();
-
-    const [selectedCategory, setSelectedCategory] = useState<string>('All');
-    const [selectedSubCategory, setSelectedSubCategory] = useState<string>('All');
+    const location = useLocation();
+    const getQueryParams = (search: string) => {
+        return new URLSearchParams(search);
+    };
+    const queryParams = getQueryParams(location.search);
     const [hasSubCategories, setHasSubCategories] = useState<boolean>(false);
     const productRef = useRef<HTMLDivElement | null>(null);
 
@@ -29,7 +32,15 @@ const Product2: React.FC = () => {
         if(productRef && productRef.current){
             productRef.current.scrollTo(0, 0);
         }
-    }, [selectedCategory, selectedSubCategory])
+
+        if(queryParams.get('category')){
+            setHasSubCategories(true);
+        }
+
+        return () => {
+            setHasSubCategories(false);
+        }
+    }, [queryParams.get('category'), queryParams.get('subCategory')])
     
     const fetcher = async (url: string) => {
         const res =await axiosPrivate.get(url);
@@ -37,8 +48,8 @@ const Product2: React.FC = () => {
     };
     const getKey = useCallback((pageIndex:any, previousPageData:any) => {
         if ((previousPageData && previousPageData.length===0) || (previousPageData && previousPageData.length<PAGE_SIZE)) return null;
-        return `${api_routes.products}?total=${PAGE_SIZE}&page=${pageIndex+1}&sort=${selectedCategory==='All' ? 'id' : 'name'}${selectedCategory!=='All' ? '&filter[has_categories]='+selectedCategory : ''}${selectedSubCategory!=='All' ? '&filter[has_sub_categories]='+selectedSubCategory : ''}`;
-    }, [selectedCategory, selectedSubCategory])
+        return `${api_routes.products}?total=${PAGE_SIZE}&page=${pageIndex+1}&sort=name${(queryParams.get('category') && queryParams.get('category')!=='All') ? '&filter[has_categories]='+queryParams.get('category') : ''}${(queryParams.get('subCategory') && queryParams.get('subCategory')!=='All') ? '&filter[has_sub_categories]='+queryParams.get('subCategory') : ''}`;
+    }, [queryParams.get('category'), queryParams.get('subCategory')])
     
     const {
         data,
@@ -62,16 +73,16 @@ const Product2: React.FC = () => {
             >
                 <div className='product-2-content-wrapper'>
                     <div className='product-2-category-content-wrapper' id="categoryScrollableDiv">
-                        <CategorySelectionSlider selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} setHasSubCategories={setHasSubCategories} setSelectedSubCategory={setSelectedSubCategory} />
+                        <CategorySelectionSlider selectedCategory={queryParams.get('category') ?? 'All'} setHasSubCategories={setHasSubCategories} />
                     </div>
                     <div className='product-2-product-content-wrapper' id="productScrollableDiv" ref={productRef}>
                         {
-                            hasSubCategories ? <SubCategorySelection selectedCategory={selectedCategory} setHasSubCategories={setHasSubCategories} setSelectedSubCategory={setSelectedSubCategory} hasSubCategories={hasSubCategories} /> :<>
+                            hasSubCategories ? <SubCategorySelection selectedCategory={queryParams.get('category') ?? 'All'} selectedSubCategory={queryParams.get('subCategory') ?? 'All'} setHasSubCategories={setHasSubCategories} hasSubCategories={hasSubCategories} /> :<>
                             {
                                 (isLoading && data===undefined) && <LoadingCard itemCount={3} column={12} height='300px' />
                             }
                             <InfiniteScroll
-                                dataLength={(!isLoading && data && data.length>0) ? data.flat().length : 0}
+                                dataLength={(!isLoading && data && data.flat().length>0) ? data.flat().length : 0}
                                 next={() => {
                                     !isLoading ? setSize(size+1) : null
                                 }}
@@ -102,19 +113,17 @@ export default Product2;
 
 const CategorySelectionSlider:React.FC<{
     selectedCategory:string;
-    setSelectedCategory:React.Dispatch<React.SetStateAction<string>>;
     setHasSubCategories: React.Dispatch<React.SetStateAction<boolean>>;
-    setSelectedSubCategory:React.Dispatch<React.SetStateAction<string>>;
-}> =({selectedCategory, setSelectedCategory, setHasSubCategories, setSelectedSubCategory}) => {
+}> =({selectedCategory, setHasSubCategories}) => {
     const axiosPrivate = useAxiosPrivate();
-
+    const router = useIonRouter();
     const categoryFetcher = async (url: string) => {
         const res =await axiosPrivate.get(url);
         return res.data.data
     };
     const getCategoryKey = useCallback((pageIndex:any, previousPageData:any) => {
         if ((previousPageData && previousPageData.length===0) || (previousPageData && previousPageData.length<CATEGORY_PAGE_SIZE)) return null;
-        return `${api_routes.categories}?total=${CATEGORY_PAGE_SIZE}&page=${pageIndex+1}&sort=id`;
+        return `${api_routes.categories}?total=${CATEGORY_PAGE_SIZE}&page=${pageIndex+1}&sort=name`;
     }, [])
     
     const {
@@ -131,12 +140,11 @@ const CategorySelectionSlider:React.FC<{
     });
 
     const categorySelectionHandler = (category: CategoryType|'All') => {
-        setSelectedSubCategory('All')
         if(category==='All'){
-            setSelectedCategory('All');
+            router.push('/main-product');
             setHasSubCategories(false);
         }else{
-            setSelectedCategory(category.id.toString());
+            router.push('/main-product' + `?category=${category.id}`);
             if(category.sub_categories.length>0){
                 setHasSubCategories(true);
             }else{
@@ -151,7 +159,7 @@ const CategorySelectionSlider:React.FC<{
                 (isCategoryLoading && categoryData===undefined) && <LoadingCard itemCount={8} column={12} />
             }
             <InfiniteScroll
-                dataLength={(!isCategoryLoading && categoryData && categoryData.length>0) ? categoryData.flat().length : 0}
+                dataLength={(!isCategoryLoading && categoryData && categoryData.flat().length>0) ? categoryData.flat().length : 0}
                 next={() => {
                     !isCategoryLoading ? setCategorySize(categorySize+1) : null
                 }}
@@ -169,7 +177,7 @@ const CategorySelectionSlider:React.FC<{
                     <p className='single-category-item-name'>All</p>
                 </div>
                 {
-                    ((!isCategoryLoading && categoryData && categoryData.length>0) ? categoryData.flat(): []).map((item, i) => <div className={selectedCategory===item.id.toString() ? 'single-category-item-container single-category-item-container-active' : 'single-category-item-container'} key={i} onClick={()=>categorySelectionHandler(item)}>
+                    ((!isCategoryLoading && categoryData && categoryData.flat().length>0) ? categoryData.flat(): []).map((item, i) => <div className={selectedCategory===item.id.toString() ? 'single-category-item-container single-category-item-container-active' : 'single-category-item-container'} key={i} onClick={()=>categorySelectionHandler(item)}>
                         <IonImg
                             src={item.image}
                             alt="Sliders"
@@ -185,11 +193,14 @@ const CategorySelectionSlider:React.FC<{
 
 const SubCategorySelection:React.FC<{
     selectedCategory:string;
+    selectedSubCategory:string;
     hasSubCategories:boolean;
-    setSelectedSubCategory:React.Dispatch<React.SetStateAction<string>>;
     setHasSubCategories: React.Dispatch<React.SetStateAction<boolean>>;
-}> = ({setHasSubCategories, setSelectedSubCategory, selectedCategory, hasSubCategories}) =>{
+}> = ({setHasSubCategories, selectedCategory, selectedSubCategory, hasSubCategories}) =>{
     const axiosPrivate = useAxiosPrivate();
+    const router = useIonRouter();
+    const subCategoryRef = useRef<HTMLDivElement | null>(null);
+
     const fetcher = async (url: string) => {
         const res =await axiosPrivate.get(url);
         return res.data.data
@@ -197,8 +208,14 @@ const SubCategorySelection:React.FC<{
     const getKey = useCallback((pageIndex:any, previousPageData:any) => {
         if(!hasSubCategories) return null;
         if ((previousPageData && previousPageData.length===0) || (previousPageData && previousPageData.length<SUB_CATEGORY_PAGE_SIZE)) return null;
-        return `${api_routes.sub_categories}?total=${SUB_CATEGORY_PAGE_SIZE}&page=${pageIndex+1}&sort=id${selectedCategory!=='All' ? '&filter[has_categories]='+selectedCategory : ''}`;
+        return `${api_routes.sub_categories}?total=${SUB_CATEGORY_PAGE_SIZE}&page=${pageIndex+1}&sort=name${selectedCategory!=='All' ? '&filter[has_categories]='+selectedCategory : ''}`;
     }, [selectedCategory])
+
+    useEffect(() => {
+        if(hasSubCategories && subCategoryRef && subCategoryRef.current){
+            subCategoryRef.current.scrollTo(0, 0);
+        }
+    }, [hasSubCategories])
 
     
     const {
@@ -214,8 +231,12 @@ const SubCategorySelection:React.FC<{
         parallel: false
     });
 
+    useEffect(() => {
+        (selectedCategory==='All' || selectedSubCategory!=='All' || data && data.flat().length===0) ? setHasSubCategories(false) : setHasSubCategories(true);
+    }, [selectedCategory, data])
+
     const subCategorySelectionHandler = (subCategory: SubCategoryType) => {
-        setSelectedSubCategory(subCategory.id.toString());
+        router.push('/main-product' + `?category=${selectedCategory}&subCategory=${subCategory.id}`);
         setHasSubCategories(false);
     }
 
@@ -223,11 +244,10 @@ const SubCategorySelection:React.FC<{
         {
             (isLoading && data===undefined) &&  <LoadingCard itemCount={8} column={6} height='160px' />
         }
-        <div className='subcategory-content-wrapper-container' id="subCategoryScrollableDiv">
+        <div className='subcategory-content-wrapper-container' id="subCategoryScrollableDiv" ref={subCategoryRef}>
             <InfiniteScroll
-                dataLength={(!isLoading && data && data.length>0) ? data.flat().length : 0}
+                dataLength={(!isLoading && data && data.flat().length>0) ? data.flat().length : 0}
                 next={() => {
-                    console.log('called')
                     !isLoading ? setSize(size+1) : null
                 }}
                 hasMore={true}

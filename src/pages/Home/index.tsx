@@ -2,7 +2,6 @@ import { IonContent, IonPage } from '@ionic/react';
 import './Home.css';
 import MainHeader from '../../components/MainHeader';
 import CategorySection from '../../components/CategorySection';
-import SpecialProductSliderSection from '../../components/SpecialProductSection/SpecialProductSliderSection';
 import Slider from '../../components/Slider';
 import ViewCartBtn from '../../components/ViewCartBtn';
 import PreviouslyOrdered from '../../components/PreviouslyOrdered';
@@ -27,9 +26,9 @@ const Home: React.FC = () => {
             </div>
             <PreviouslyOrdered />
             <CategorySection inHomePage={true} />
-            <SpecialProductSliderSection slug='is_featured' name='Exclusive Products' />
+            {/* <SpecialProductSliderSection slug='is_featured' name='Exclusive Products' />
             <SpecialProductSliderSection slug='is_new' name='Eco-Friendly Products' />
-            <SpecialProductSliderSection slug='is_on_sale' name='On Demand Products' />
+            <SpecialProductSliderSection slug='is_on_sale' name='On Demand Products' /> */}
             <ViewCartBtn />
         </IonContent>
     </IonPage>
