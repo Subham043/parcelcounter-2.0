@@ -1,15 +1,13 @@
 import { IonBadge, IonButton, IonButtons, IonCard, IonCol, IonContent, IonHeader, IonIcon, IonItem, IonItemDivider, IonLabel, IonModal, IonPage, IonRefresher, IonRefresherContent, IonRow, IonText, IonTitle, IonToolbar, RefresherEventDetail } from '@ionic/react';
 import './OrderDetail.css';
-import MainHeader from '../../components/MainHeader';
 import useSWR from 'swr'
 import { OrderType } from '../../helper/types';
 import { useAuth } from '../../context/AuthProvider';
 import { api_routes } from '../../helper/routes';
 import { RouteComponentProps, useHistory } from 'react-router';
-import { arrowBack, callOutline, chatbubbleEllipsesOutline, homeOutline, mailOutline, personOutline, searchOutline } from 'ionicons/icons';
+import { arrowBack, callOutline, chatbubbleEllipsesOutline, checkmarkOutline, homeOutline, mailOutline, personOutline, searchOutline } from 'ionicons/icons';
 import LoadingCard from '../../components/LoadingCard';
 import OrderItem from '../../components/OrderItem';
-import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import OrderHelp from '../../components/OrderHelp';
 
@@ -74,7 +72,7 @@ const OrderDetail: React.FC<OrderProps> = ({match}) =>{
                                 size="4"
                                 className='text-right'
                             >
-                                <IonBadge color="dark">{order.order.statuses.length>0 ? order.order.statuses[order.order.statuses.length-1].status : 'PROCESSING'}</IonBadge>
+                                <IonBadge color="dark">{order.order.statuses.length>0 ? order.order.statuses[order.order.statuses.length-1].status : 'ORDER PLACED'}</IonBadge>
                             </IonCol>
                         </IonRow>
                     </div>
@@ -83,6 +81,73 @@ const OrderDetail: React.FC<OrderProps> = ({match}) =>{
                             order.order.products.map((item, i) => <OrderItem {...item} key={i} />)
                         }
                     </IonCard>
+                    <div className='mt-1'>
+                        <IonCard>
+                            <div className="product-detail-page-main-bulk-factor">
+                                <div className="cart-total-price-heading cart-total-price-heading-2">
+                                    <h6>Order Timeline</h6>
+                                </div>
+                            </div>
+                            <div className='order-detail-timeline-container'>
+                                <div className='order-detail-timeline'>
+                                    <div className={`order-detail-timeline-item ${order.order.statuses.length>0 && order.order.statuses.map(s=>s.status).includes('ORDER PLACED') ? 'timeline-active' : ''}`}>
+                                        <div className='order-detail-timeline-icon'>
+                                            <IonIcon icon={checkmarkOutline} />
+                                        </div>
+                                        <div className='order-detail-timeline-info'>
+                                            <h5 className='order-detail-timeline-heading'>Order Placed</h5>
+                                            <p className='order-detail-timeline-time'>{order.order.statuses.length>0 && order.order.statuses.filter(s=>s.status==='ORDER PLACED').length>0 && order.order.statuses[order.order.statuses.findIndex(s=>s.status==='ORDER PLACED')].created_at}</p>
+                                        </div>
+                                    </div>
+                                    <div className={`order-detail-timeline-item ${order.order.statuses.length>0 && order.order.statuses.map(s=>s.status).includes('CONFIRMED') ? 'timeline-active' : ''}`}>
+                                        <div className='order-detail-timeline-icon'>
+                                            <IonIcon icon={checkmarkOutline} />
+                                        </div>
+                                        <div className='order-detail-timeline-info'>
+                                            <h5 className='order-detail-timeline-heading'>Confirmed</h5>
+                                            <p className='order-detail-timeline-time'>{order.order.statuses.length>0 && order.order.statuses.filter(s=>s.status==='CONFIRMED').length>0 && order.order.statuses[order.order.statuses.findIndex(s=>s.status==='ORDER PLACED')].created_at}</p>
+                                        </div>
+                                    </div>
+                                    <div className={`order-detail-timeline-item ${order.order.statuses.length>0 && order.order.statuses.map(s=>s.status).includes('ORDER PACKED') ? 'timeline-active' : ''}`}>
+                                        <div className='order-detail-timeline-icon'>
+                                            <IonIcon icon={checkmarkOutline} />
+                                        </div>
+                                        <div className='order-detail-timeline-info'>
+                                            <h5 className='order-detail-timeline-heading'>Order Packed</h5>
+                                            <p className='order-detail-timeline-time'>{order.order.statuses.length>0 && order.order.statuses.filter(s=>s.status==='ORDER PACKED').length>0 && order.order.statuses[order.order.statuses.findIndex(s=>s.status==='ORDER PLACED')].created_at}</p>
+                                        </div>
+                                    </div>
+                                    <div className={`order-detail-timeline-item ${order.order.statuses.length>0 && order.order.statuses.map(s=>s.status).includes('READY FOR SHIPMENT') ? 'timeline-active' : ''}`}>
+                                        <div className='order-detail-timeline-icon'>
+                                            <IonIcon icon={checkmarkOutline} />
+                                        </div>
+                                        <div className='order-detail-timeline-info'>
+                                            <h5 className='order-detail-timeline-heading'>Ready For Shipment</h5>
+                                            <p className='order-detail-timeline-time'>{order.order.statuses.length>0 && order.order.statuses.filter(s=>s.status==='READY FOR SHIPMENT').length>0 && order.order.statuses[order.order.statuses.findIndex(s=>s.status==='ORDER PLACED')].created_at}</p>
+                                        </div>
+                                    </div>
+                                    <div className={`order-detail-timeline-item ${order.order.statuses.length>0 && order.order.statuses.map(s=>s.status).includes('OUT FOR DELIVERY') ? 'timeline-active' : ''}`}>
+                                        <div className='order-detail-timeline-icon'>
+                                            <IonIcon icon={checkmarkOutline} />
+                                        </div>
+                                        <div className='order-detail-timeline-info'>
+                                            <h5 className='order-detail-timeline-heading'>Out For Delivery</h5>
+                                            <p className='order-detail-timeline-time'>{order.order.statuses.length>0 && order.order.statuses.filter(s=>s.status==='OUT FOR DELIVERY').length>0 && order.order.statuses[order.order.statuses.findIndex(s=>s.status==='ORDER PLACED')].created_at}</p>
+                                        </div>
+                                    </div>
+                                    <div className={`order-detail-timeline-item ${order.order.statuses.length>0 && order.order.statuses.map(s=>s.status).includes('DELIVERED') ? 'timeline-active' : ''}`}>
+                                        <div className='order-detail-timeline-icon'>
+                                            <IonIcon icon={checkmarkOutline} />
+                                        </div>
+                                        <div className='order-detail-timeline-info'>
+                                            <h5 className='order-detail-timeline-heading'>Delivered</h5>
+                                            <p className='order-detail-timeline-time'>{order.order.statuses.length>0 && order.order.statuses.filter(s=>s.status==='DELIVERED').length>0 && order.order.statuses[order.order.statuses.findIndex(s=>s.status==='ORDER PLACED')].created_at}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </IonCard>
+                    </div>
                     <div className='cart-message mt-1'>
                         <p>You have realized a minimum savings of 20% - 25% on your standard purchase when compared to retail price.</p>
                     </div>
@@ -108,7 +173,7 @@ const OrderDetail: React.FC<OrderProps> = ({match}) =>{
                                         className='text-right'
                                     >
                                         <IonText>
-                                        <p className='order-detail-price-text'><b>&#8377;{order.order.subtotal}</b></p>
+                                        <p className='order-detail-price-text'><b><strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{order.order.subtotal}</b></p>
                                         </IonText>
                                     </IonCol>
                                 </IonRow>
@@ -129,7 +194,7 @@ const OrderDetail: React.FC<OrderProps> = ({match}) =>{
                                             className='text-right'
                                         >
                                             <IonText>
-                                            <p className='order-detail-price-text'><b>₹{item.total_charge_in_amount}</b></p>
+                                            <p className='order-detail-price-text'><b><strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{item.total_charge_in_amount}</b></p>
                                             </IonText>
                                         </IonCol>
                                     </IonRow>
@@ -150,7 +215,7 @@ const OrderDetail: React.FC<OrderProps> = ({match}) =>{
                                         className='text-right'
                                     >
                                         <IonText>
-                                        <p className='order-detail-price-text'><b>&#8377;{order.order.total_price}</b></p>
+                                        <p className='order-detail-price-text'><b><strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{order.order.total_price}</b></p>
                                         </IonText>
                                     </IonCol>
                                 </IonRow>

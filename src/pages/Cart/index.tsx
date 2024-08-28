@@ -173,7 +173,7 @@ const Cart: React.FC = () => {
                                                     className='text-right'
                                                 >
                                                     <IonText>
-                                                    <p className='cart-text'><b>&#8377;{cart.cart_subtotal}</b></p>
+                                                    <p className='cart-text'><b><strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{cart.cart_subtotal}</b></p>
                                                     </IonText>
                                                 </IonCol>
                                             </IonRow>
@@ -213,7 +213,7 @@ const Cart: React.FC = () => {
                                                     className='text-right'
                                                 >
                                                     <IonText>
-                                                    <p className='cart-text'><b>&#8377;{cart.total_price}</b></p>
+                                                    <p className='cart-text'><b><strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{cart.total_price}</b></p>
                                                     </IonText>
                                                 </IonCol>
                                             </IonRow>
@@ -327,7 +327,7 @@ const Cart: React.FC = () => {
                                             className='text-left'
                                         >
                                             <IonText color="dark">
-                                                <p className="product-detail-price m-0"><b>Total : &#8377;{cart.total_price}</b></p>
+                                                <p className="product-detail-price m-0"><b>Total : <strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{cart.total_price}</b></p>
                                             </IonText>
                                         </IonCol>
                                         <IonCol

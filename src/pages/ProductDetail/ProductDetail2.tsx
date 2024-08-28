@@ -18,7 +18,7 @@ import CartQuantity2 from '../../components/CartQuantity/CartQuantity2';
 import MainProductCard from '../../components/MainProductCard';
 import NoData from '../../components/NoData';
 
-const PAGE_SIZE = 20;
+const PAGE_SIZE = 10;
 interface ProductProps extends RouteComponentProps<{
   slug: string;
 }> {}
@@ -48,11 +48,11 @@ const ProductDetailBulkFactor = ({product}:{product:ProductType}) => {
                         (cart_product_item().length>0 && item.min_quantity===cart_product_item()[0].product_price.min_quantity) ?
                         <div className="bulk-offer-text bulk-offer-text-active">
                             <IonIcon icon={checkmarkDoneOutline} /> 
-                            <span>Buy {item.min_quantity} {product.cart_quantity_specification} or more at &#8377;{item.discount_in_price} / {product.cart_quantity_specification}</span>
+                            <span>Buy {item.min_quantity} {product.cart_quantity_specification} or more at <strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{item.discount_in_price} / {product.cart_quantity_specification}</span>
                         </div>:
                         <div className="bulk-offer-text">
                             <IonIcon icon={informationCircleOutline} /> 
-                            <span>Buy {item.min_quantity} {product.cart_quantity_specification} or more at &#8377;{item.discount_in_price} / {product.cart_quantity_specification}</span>
+                            <span>Buy {item.min_quantity} {product.cart_quantity_specification} or more at <strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{item.discount_in_price} / {product.cart_quantity_specification}</span>
                         </div>
                     }
                 </li>)
@@ -85,12 +85,12 @@ const ProductDetail2: React.FC<ProductProps> = ({match}) => {
       return res.data.data
   };
   const getKey = useCallback((pageIndex:any, previousPageData:any) => {
-    setTimeout(async() => {
-      if(productRef && productRef.current){
-        await productRef.current.complete()
+      if ((previousPageData && previousPageData.length===0) || (previousPageData && previousPageData.length<PAGE_SIZE)) {
+        if(productRef && productRef.current){
+          productRef.current.complete()
+        }
+        return null;
       }
-    }, 500)
-      if ((previousPageData && previousPageData.length===0) || (previousPageData && previousPageData.length<PAGE_SIZE)) return null;
       return `${api_routes.products}?total=${PAGE_SIZE}&page=${pageIndex+1}&sort=id${getCategoryStr() ? `&filter[has_categories]=${getCategoryStr()}` : ''}${getSubCategoryStr() ? `&filter[has_sub_categories]=${getSubCategoryStr()}` : ''}`;
   }, [productData && productData.product.slug])
   
@@ -128,6 +128,7 @@ const ProductDetail2: React.FC<ProductProps> = ({match}) => {
                   <CommonHeading text={productData.product.name} />
                   <div className="section-container">
                     <ProductDetailBulkFactor product={productData.product} />
+                    <p className='page-padding product-detail-page-main-description'>{productData.product.brief_description}</p>
                   </div>
                   {
                     productData.product.product_specifications.length>0 &&

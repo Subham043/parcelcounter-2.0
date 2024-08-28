@@ -22,7 +22,7 @@ const ViewCartBtn: React.FC = () => {
                                     className='text-left p-0'
                                 >
                                     <div>
-                                        {cart.cart.length} {cart.cart.length===1 ? 'Item' : 'Items'} | &#8377;{cart.total_price}
+                                        {cart.cart.length} {cart.cart.length===1 ? 'Item' : 'Items'} | <strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{cart.total_price}
                                     </div>
                                 </IonCol>
                                 <IonCol

@@ -62,8 +62,7 @@
 
 .bulk-offer-text{
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+    align-items: flex-start;
     gap: 10px;
     color: #222;
     font-size: 20px;
@@ -72,6 +71,7 @@
 .bulk-offer-text span{
     font-size: 14px;
     margin: 0;
+    flex: 1;
 }
 
 .specification-heading h6{
@@ -200,4 +200,8 @@
 }
 .product-detail-main-cart-divider{
     padding: 5px 0;
+}
+
+.product-detail-page-main-description{
+    text-align: justify;
 }

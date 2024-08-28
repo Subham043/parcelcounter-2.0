@@ -181,7 +181,7 @@ const Cart2: React.FC = () => {
                                                         className='text-right'
                                                     >
                                                         <IonText>
-                                                        <p className='cart-text'><b>&#8377;{cart.cart_subtotal}</b></p>
+                                                        <p className='cart-text'><b><strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{cart.cart_subtotal}</b></p>
                                                         </IonText>
                                                     </IonCol>
                                                 </IonRow>
@@ -202,7 +202,7 @@ const Cart2: React.FC = () => {
                                                             className='text-right'
                                                         >
                                                             <IonText>
-                                                            <p className='cart-text'><b>&#8377;{item.total_charge_in_amount}</b></p>
+                                                            <p className='cart-text'><b><strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{item.total_charge_in_amount}</b></p>
                                                             </IonText>
                                                         </IonCol>
                                                     </IonRow>
@@ -212,7 +212,7 @@ const Cart2: React.FC = () => {
                                                             className='text-left'
                                                         >
                                                             <IonText>
-                                                            {(cart.cart_subtotal<item.include_charges_for_cart_price_below) && <p className="m-0 cart-charge-info">Add items worth <b>₹{(item.include_charges_for_cart_price_below-cart.cart_subtotal).toFixed(2)}</b> to avoid {item.charges_name}.</p>}
+                                                            {(cart.cart_subtotal<item.include_charges_for_cart_price_below) && <p className="m-0 cart-charge-info">Add items worth <b><strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{(item.include_charges_for_cart_price_below-cart.cart_subtotal).toFixed(2)}</b> to avoid {item.charges_name}.</p>}
                                                             </IonText>
                                                         </IonCol>
                                                     </IonRow>}
@@ -233,7 +233,7 @@ const Cart2: React.FC = () => {
                                                         className='text-right'
                                                     >
                                                         <IonText>
-                                                        <p className='cart-text'><b>&#8377;{cart.total_price}</b></p>
+                                                        <p className='cart-text'><b><strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{cart.total_price}</b></p>
                                                         </IonText>
                                                     </IonCol>
                                                 </IonRow>
@@ -278,7 +278,7 @@ const Cart2: React.FC = () => {
                                                                 className='text-left p-0'
                                                             >
                                                                 <div>
-                                                                    {cart.cart.length} {cart.cart.length===1 ? 'Item' : 'Items'} | &#8377;{cart.total_price}
+                                                                    {cart.cart.length} {cart.cart.length===1 ? 'Item' : 'Items'} | <strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{cart.total_price}
                                                                 </div>
                                                             </IonCol>
                                                             <IonCol
@@ -312,7 +312,7 @@ const Cart2: React.FC = () => {
                                                             className='text-left p-0'
                                                         >
                                                             <div>
-                                                                {cart.cart.length} {cart.cart.length===1 ? 'Item' : 'Items'} | &#8377;{cart.total_price}
+                                                                {cart.cart.length} {cart.cart.length===1 ? 'Item' : 'Items'} | <strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{cart.total_price}
                                                             </div>
                                                         </IonCol>
                                                         <IonCol

@@ -23,7 +23,7 @@ const OrderCard: React.FC<OrderType> = ({id, total_price, products, statuses, cr
                     className='text-right'
                 >
                     <IonText>
-                        <b className='order-card-product-price'>&#8377;{total_price}</b>
+                        <b className='order-card-product-price'><strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{total_price}</b>
                     </IonText>
                 </IonCol>
             </IonRow>
@@ -45,7 +45,7 @@ const OrderCard: React.FC<OrderType> = ({id, total_price, products, statuses, cr
                     size="4"
                     className='text-right'
                 >
-                    <IonBadge color="dark">{statuses.length>0 ? statuses[statuses.length-1].status : 'PROCESSING'}</IonBadge>
+                    <IonBadge color="dark">{statuses.length>0 ? statuses[statuses.length-1].status : 'ORDER PLACED'}</IonBadge>
                 </IonCol>
             </IonRow>
         </div>

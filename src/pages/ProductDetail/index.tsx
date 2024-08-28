@@ -52,11 +52,11 @@ const ProductDetailBulkFactor = ({product}:{product:ProductType}) => {
                         (cart_product_item().length>0 && item.min_quantity===cart_product_item()[0].product_price.min_quantity) ?
                         <div className="bulk-offer-text bulk-offer-text-active">
                             <IonIcon icon={checkmarkDoneOutline} /> 
-                            <span>Buy {item.min_quantity} {product.cart_quantity_specification} or more at &#8377;{item.discount_in_price} / {product.cart_quantity_specification}</span>
+                            <span>Buy {item.min_quantity} {product.cart_quantity_specification} or more at <strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{item.discount_in_price} / {product.cart_quantity_specification}</span>
                         </div>:
                         <div className="bulk-offer-text">
                             <IonIcon icon={informationCircleOutline} /> 
-                            <span>Buy {item.min_quantity} {product.cart_quantity_specification} or more at &#8377;{item.discount_in_price} / {product.cart_quantity_specification}</span>
+                            <span>Buy {item.min_quantity} {product.cart_quantity_specification} or more at <strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{item.discount_in_price} / {product.cart_quantity_specification}</span>
                         </div>
                     }
                 </li>)
