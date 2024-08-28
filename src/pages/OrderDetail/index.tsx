@@ -90,7 +90,7 @@ const OrderDetail: React.FC<OrderProps> = ({match}) =>{
                             </div>
                             <div className='order-detail-timeline-container'>
                                 <div className='order-detail-timeline'>
-                                    <div className={`order-detail-timeline-item ${order.order.statuses.length>0 && order.order.statuses.map(s=>s.status).includes('ORDER PLACED') ? 'timeline-active' : ''}`}>
+                                    {(order.order.statuses.filter(s=>s.status==='CANCELLED').length===0 || order.order.statuses.filter(s=>s.status==='ORDER PLACED').length>0) && <div className={`order-detail-timeline-item ${order.order.statuses.length>0 && order.order.statuses.map(s=>s.status).includes('ORDER PLACED') ? 'timeline-active' : ''}`}>
                                         <div className='order-detail-timeline-icon'>
                                             <IonIcon icon={checkmarkOutline} />
                                         </div>
@@ -98,52 +98,61 @@ const OrderDetail: React.FC<OrderProps> = ({match}) =>{
                                             <h5 className='order-detail-timeline-heading'>Order Placed</h5>
                                             <p className='order-detail-timeline-time'>{order.order.statuses.length>0 && order.order.statuses.filter(s=>s.status==='ORDER PLACED').length>0 && order.order.statuses[order.order.statuses.findIndex(s=>s.status==='ORDER PLACED')].created_at}</p>
                                         </div>
-                                    </div>
-                                    <div className={`order-detail-timeline-item ${order.order.statuses.length>0 && order.order.statuses.map(s=>s.status).includes('CONFIRMED') ? 'timeline-active' : ''}`}>
+                                    </div>}
+                                    {(order.order.statuses.filter(s=>s.status==='CANCELLED').length===0 || order.order.statuses.filter(s=>s.status==='CONFIRMED').length>0) && <div className={`order-detail-timeline-item ${order.order.statuses.length>0 && order.order.statuses.map(s=>s.status).includes('CONFIRMED') ? 'timeline-active' : ''}`}>
                                         <div className='order-detail-timeline-icon'>
                                             <IonIcon icon={checkmarkOutline} />
                                         </div>
                                         <div className='order-detail-timeline-info'>
                                             <h5 className='order-detail-timeline-heading'>Confirmed</h5>
-                                            <p className='order-detail-timeline-time'>{order.order.statuses.length>0 && order.order.statuses.filter(s=>s.status==='CONFIRMED').length>0 && order.order.statuses[order.order.statuses.findIndex(s=>s.status==='ORDER PLACED')].created_at}</p>
+                                            <p className='order-detail-timeline-time'>{order.order.statuses.length>0 && order.order.statuses.filter(s=>s.status==='CONFIRMED').length>0 && order.order.statuses[order.order.statuses.findIndex(s=>s.status==='CONFIRMED')].created_at}</p>
                                         </div>
-                                    </div>
-                                    <div className={`order-detail-timeline-item ${order.order.statuses.length>0 && order.order.statuses.map(s=>s.status).includes('ORDER PACKED') ? 'timeline-active' : ''}`}>
+                                    </div>}
+                                    {(order.order.statuses.filter(s=>s.status==='CANCELLED').length===0 || order.order.statuses.filter(s=>s.status==='PACKED').length>0) && <div className={`order-detail-timeline-item ${order.order.statuses.length>0 && order.order.statuses.map(s=>s.status).includes('PACKED') ? 'timeline-active' : ''}`}>
                                         <div className='order-detail-timeline-icon'>
                                             <IonIcon icon={checkmarkOutline} />
                                         </div>
                                         <div className='order-detail-timeline-info'>
                                             <h5 className='order-detail-timeline-heading'>Order Packed</h5>
-                                            <p className='order-detail-timeline-time'>{order.order.statuses.length>0 && order.order.statuses.filter(s=>s.status==='ORDER PACKED').length>0 && order.order.statuses[order.order.statuses.findIndex(s=>s.status==='ORDER PLACED')].created_at}</p>
+                                            <p className='order-detail-timeline-time'>{order.order.statuses.length>0 && order.order.statuses.filter(s=>s.status==='PACKED').length>0 && order.order.statuses[order.order.statuses.findIndex(s=>s.status==='PACKED')].created_at}</p>
                                         </div>
-                                    </div>
-                                    <div className={`order-detail-timeline-item ${order.order.statuses.length>0 && order.order.statuses.map(s=>s.status).includes('READY FOR SHIPMENT') ? 'timeline-active' : ''}`}>
+                                    </div>}
+                                    {(order.order.statuses.filter(s=>s.status==='CANCELLED').length===0 || order.order.statuses.filter(s=>s.status==='READY FOR SHIPMENT').length>0) && <div className={`order-detail-timeline-item ${order.order.statuses.length>0 && order.order.statuses.map(s=>s.status).includes('READY FOR SHIPMENT') ? 'timeline-active' : ''}`}>
                                         <div className='order-detail-timeline-icon'>
                                             <IonIcon icon={checkmarkOutline} />
                                         </div>
                                         <div className='order-detail-timeline-info'>
                                             <h5 className='order-detail-timeline-heading'>Ready For Shipment</h5>
-                                            <p className='order-detail-timeline-time'>{order.order.statuses.length>0 && order.order.statuses.filter(s=>s.status==='READY FOR SHIPMENT').length>0 && order.order.statuses[order.order.statuses.findIndex(s=>s.status==='ORDER PLACED')].created_at}</p>
+                                            <p className='order-detail-timeline-time'>{order.order.statuses.length>0 && order.order.statuses.filter(s=>s.status==='READY FOR SHIPMENT').length>0 && order.order.statuses[order.order.statuses.findIndex(s=>s.status==='READY FOR SHIPMENT')].created_at}</p>
                                         </div>
-                                    </div>
-                                    <div className={`order-detail-timeline-item ${order.order.statuses.length>0 && order.order.statuses.map(s=>s.status).includes('OUT FOR DELIVERY') ? 'timeline-active' : ''}`}>
+                                    </div>}
+                                    {(order.order.statuses.filter(s=>s.status==='CANCELLED').length===0 || order.order.statuses.filter(s=>s.status==='OUT FOR DELIVERY').length>0) && <div className={`order-detail-timeline-item ${order.order.statuses.length>0 && order.order.statuses.map(s=>s.status).includes('OUT FOR DELIVERY') ? 'timeline-active' : ''}`}>
                                         <div className='order-detail-timeline-icon'>
                                             <IonIcon icon={checkmarkOutline} />
                                         </div>
                                         <div className='order-detail-timeline-info'>
                                             <h5 className='order-detail-timeline-heading'>Out For Delivery</h5>
-                                            <p className='order-detail-timeline-time'>{order.order.statuses.length>0 && order.order.statuses.filter(s=>s.status==='OUT FOR DELIVERY').length>0 && order.order.statuses[order.order.statuses.findIndex(s=>s.status==='ORDER PLACED')].created_at}</p>
+                                            <p className='order-detail-timeline-time'>{order.order.statuses.length>0 && order.order.statuses.filter(s=>s.status==='OUT FOR DELIVERY').length>0 && order.order.statuses[order.order.statuses.findIndex(s=>s.status==='OUT FOR DELIVERY')].created_at}</p>
                                         </div>
-                                    </div>
-                                    <div className={`order-detail-timeline-item ${order.order.statuses.length>0 && order.order.statuses.map(s=>s.status).includes('DELIVERED') ? 'timeline-active' : ''}`}>
+                                    </div>}
+                                    {(order.order.statuses.filter(s=>s.status==='CANCELLED').length===0 || order.order.statuses.filter(s=>s.status==='DELIVERED').length>0) && <div className={`order-detail-timeline-item ${order.order.statuses.length>0 && order.order.statuses.map(s=>s.status).includes('DELIVERED') ? 'timeline-active' : ''}`}>
                                         <div className='order-detail-timeline-icon'>
                                             <IonIcon icon={checkmarkOutline} />
                                         </div>
                                         <div className='order-detail-timeline-info'>
                                             <h5 className='order-detail-timeline-heading'>Delivered</h5>
-                                            <p className='order-detail-timeline-time'>{order.order.statuses.length>0 && order.order.statuses.filter(s=>s.status==='DELIVERED').length>0 && order.order.statuses[order.order.statuses.findIndex(s=>s.status==='ORDER PLACED')].created_at}</p>
+                                            <p className='order-detail-timeline-time'>{order.order.statuses.length>0 && order.order.statuses.filter(s=>s.status==='DELIVERED').length>0 && order.order.statuses[order.order.statuses.findIndex(s=>s.status==='DELIVERED')].created_at}</p>
                                         </div>
-                                    </div>
+                                    </div>}
+                                    {(order.order.statuses.filter(s=>s.status==='CANCELLED').length>0) && <div className={`order-detail-timeline-item ${order.order.statuses.length>0 && order.order.statuses.map(s=>s.status).includes('CANCELLED') ? 'timeline-active' : ''}`}>
+                                        <div className='order-detail-timeline-icon'>
+                                            <IonIcon icon={checkmarkOutline} />
+                                        </div>
+                                        <div className='order-detail-timeline-info'>
+                                            <h5 className='order-detail-timeline-heading'>Cancelled</h5>
+                                            <p className='order-detail-timeline-time'>{order.order.statuses.length>0 && order.order.statuses.filter(s=>s.status==='CANCELLED').length>0 && order.order.statuses[order.order.statuses.findIndex(s=>s.status==='CANCELLED')].created_at}</p>
+                                        </div>
+                                    </div>}
                                 </div>
                             </div>
                         </IonCard>
