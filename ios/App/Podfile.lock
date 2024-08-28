@@ -22,6 +22,8 @@ PODS:
     - Capacitor
   - CapacitorStatusBar (6.0.0):
     - Capacitor
+  - CapgoInappbrowser (6.3.2):
+    - Capacitor
 
 DEPENDENCIES:
   - "Capacitor (from `../../node_modules/@capacitor/ios`)"
@@ -36,6 +38,7 @@ DEPENDENCIES:
   - "CapacitorPreferences (from `../../node_modules/@capacitor/preferences`)"
   - "CapacitorSplashScreen (from `../../node_modules/@capacitor/splash-screen`)"
   - "CapacitorStatusBar (from `../../node_modules/@capacitor/status-bar`)"
+  - "CapgoInappbrowser (from `../../node_modules/@capgo/inappbrowser`)"
 
 EXTERNAL SOURCES:
   Capacitor:
@@ -62,6 +65,8 @@ EXTERNAL SOURCES:
     :path: "../../node_modules/@capacitor/splash-screen"
   CapacitorStatusBar:
     :path: "../../node_modules/@capacitor/status-bar"
+  CapgoInappbrowser:
+    :path: "../../node_modules/@capgo/inappbrowser"
 
 SPEC CHECKSUMS:
   Capacitor: 8941aba4364ba9d1b22188569001f2ce45cc2b00
@@ -76,7 +81,8 @@ SPEC CHECKSUMS:
   CapacitorPreferences: 72909b165bc7807103778ddbb86d5d8ce06abf71
   CapacitorSplashScreen: 61645214e8f955ff2b80f16a6a3648960fe4c89f
   CapacitorStatusBar: 2e4369f99166125435641b1908d05f561eaba6f6
+  CapgoInappbrowser: cd51e48eb0234b975303d26aa592e46f06e4df24
 
-PODFILE CHECKSUM: ab4ad283a449aba4680d285868c2ce3f6f48fc7e
+PODFILE CHECKSUM: 6df6e69022635dc9d6b8dabceb73b943fb430d00
 
 COCOAPODS: 1.11.3

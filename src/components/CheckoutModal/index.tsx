@@ -6,7 +6,7 @@ import { api_routes } from '../../helper/routes';
 import { useHistory } from 'react-router';
 import { useToast } from '../../hooks/useToast';
 import { useAxiosPrivate } from '../../hooks/useAxiosPrivate';
-import { Browser } from '@capacitor/browser';
+import { BackgroundColor, InAppBrowser } from '@capgo/inappbrowser'
 
 type Props = {
     isOpen: boolean;
@@ -74,12 +74,25 @@ const CheckoutModal: React.FC<Props> = ({isOpen, setIsOpen, selectedBillingAddre
     };
 
     const makePayment = async(url:string, order_id:string) =>{
-        await Browser.open({ url });
-        Browser.addListener('browserFinished', async ()=>{
+        await InAppBrowser.openWebView({
+            url: url,
+            title: 'Make Payment',
+            backgroundColor: BackgroundColor.WHITE,
+            disableGoBackOnNativeApplication: true,
+            closeModal: true,
+            closeModalTitle: 'Cancel Payment',
+            closeModalDescription: 'Are you sure you want to cancel payment?',
+        });
+        InAppBrowser.addListener('urlChangeEvent', async (state)=>{
+            if (state.url.includes('closeAppBrowser=true')) {
+                await InAppBrowser.close();
+            }
+        })
+        InAppBrowser.addListener('closeEvent', async ()=>{
           try {
             setVerifyLoading(true);
             const response = await axiosPrivate.get(api_routes.place_order_detail+`/${order_id}`);
-            if(response.data.order.payment.status!=='PENDING'){
+            if(response.data.order.payment.status==='PAID'){
                 toastSuccess('Order placed successfully.');
                 setIsOpen(false)
                 mutate(api_routes.cart_all)
@@ -89,6 +102,7 @@ const CheckoutModal: React.FC<Props> = ({isOpen, setIsOpen, selectedBillingAddre
               console.log(error);
           }finally{
             setVerifyLoading(false);
+            InAppBrowser.removeAllListeners();
           }
         });
     }
