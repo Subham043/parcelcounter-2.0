@@ -10,7 +10,7 @@ import { api_routes } from '../../helper/routes';
 import Input from '../Input';
 import { ErrorMessage } from '@hookform/error-message';
 import { KeyedMutator } from 'swr';
-import { BillingAddressType, MapAddressResponse, OlaAddres } from '../../helper/types';
+import { BillingAddressType, OlaAddres } from '../../helper/types';
 import OlaMap from '../Map/OlaMap';
 import { close, locationOutline } from 'ionicons/icons';
 // import Map from '../Map';
@@ -67,7 +67,7 @@ const schema = yup
 
 const BillingAddressEdit:React.FC<Props> = (props) => {
     const [loading, setLoading] = useState<boolean>(false);
-    const [displayMap, setDisplayMap] = useState<boolean>(true);
+    const [displayMap, setDisplayMap] = useState<boolean>(false);
     const axiosPrivate = useAxiosPrivate();
     const {toastSuccess, toastError} = useToast();
     const [currentLocation, setCurrentLocation] = useState<undefined | {lat:number, lng:number}>();
@@ -75,7 +75,6 @@ const BillingAddressEdit:React.FC<Props> = (props) => {
 
     const {
         handleSubmit,
-        setValue,
         register,
         getValues,
         reset,
@@ -99,9 +98,25 @@ const BillingAddressEdit:React.FC<Props> = (props) => {
     });
 
     useEffect(()=>{
-        if(props.isEdit && props.data.map_information){
+        if(props.isEdit){
+          if(props.data && props.data.map_information){
+            setDisplayMap(false);
+            setMapAddress(props.data.map_information ??  undefined)
+            return;
+          }else{
+            setDisplayMap(true);
+            return;
+          }
+        }
+
+        if(!props.isEdit){
+          setDisplayMap(true);
+          return;
+        }
+
+        return () => {
           setDisplayMap(false);
-          setMapAddress(props.data.map_information ??  undefined)
+          setMapAddress(undefined)
         }
 
     }, [props.isEdit && props.data])

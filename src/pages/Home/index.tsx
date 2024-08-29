@@ -7,10 +7,12 @@ import ViewCartBtn from '../../components/ViewCartBtn';
 import PreviouslyOrdered from '../../components/PreviouslyOrdered';
 
 const images = [
-  '/images/banner-1.webp',
-  '/images/banner-2.webp',
-  '/images/banner-3.webp',
-  '/images/banner-4.webp',
+  '/images/banner-0001.webp',
+  '/images/banner-0002.webp',
+  '/images/banner-0003.webp',
+  '/images/banner-0004.webp',
+  '/images/banner-0005.webp',
+  '/images/banner-0006.webp',
 ];
 
 const Home: React.FC = () => {

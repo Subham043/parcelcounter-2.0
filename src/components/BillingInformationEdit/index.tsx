@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './BillingInformationEdit.css';
 import * as yup from "yup";
 import { useToast } from '../../hooks/useToast';
@@ -70,7 +70,6 @@ const BillingInformationEdit:React.FC<Props> = (props) => {
 
     const {
         handleSubmit,
-        setValue,
         register,
         getValues,
         reset,

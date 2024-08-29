@@ -3,7 +3,6 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
-import Input from '../../components/Input';
 import { axiosPublic } from '../../../axios';
 import { api_routes } from '../../helper/routes';
 import { useToast } from '../../hooks/useToast';

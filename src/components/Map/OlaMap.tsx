@@ -120,7 +120,7 @@ const OlaMap = ({isEdit, displayMap, currentLocation, setCurrentLocation, mapAdd
         setLocationPermission(true);
         return;
       }
-      if(displayMap){
+      if(!isEdit && displayMap){
         setCurrentLocation({ lat: currentPosition.coords.latitude, lng: currentPosition.coords.longitude });
         reverseGeocodingHandler({ lat: currentPosition.coords.latitude, lng: currentPosition.coords.longitude });
         setLocationPermission(true);
