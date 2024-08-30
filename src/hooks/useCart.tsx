@@ -12,6 +12,7 @@ type CartInput = {
     product_price_id: number;
     quantity: number;
     amount: number;
+    color: string|null;
 }
 
 type BasicCartInput = {
@@ -19,6 +20,7 @@ type BasicCartInput = {
     product_price: ProductPriceType;
     quantity: number;
     amount: number;
+    color: string|null;
 }
 
 export function useCart({
@@ -35,6 +37,7 @@ export function useCart({
     min_cart_quantity: number,
 }){
     const [quantity, setQuantity] = useState<number>(0);
+    const [color, setColor] = useState<string|null>(null);
     
     const { cart, cartLoading, updateCart } = useCartContext();
     const { cart:basicCart, updateCart: updateBasicCart } = useBasicCartContext();
@@ -56,14 +59,16 @@ export function useCart({
     useEffect(() => {
       if(auth.authenticated){
         setQuantity(cart_product_item().length===0 ? 0 : cart_product_item()[0].quantity)
+        setColor(cart_product_item().length===0 ? null : cart_product_item()[0].color)
       }else{
         setQuantity(basic_cart_product_item().length===0 ? 0 : basic_cart_product_item()[0].quantity)
+        setColor(basic_cart_product_item().length===0 ? null : basic_cart_product_item()[0].color)
       }
     
       return () => {}
     }, [cart.cart, id, auth, basicCart.cart])
 
-    const incrementQuantity = () => {
+    const incrementQuantity = (color?: string|null) => {
       if(auth.authenticated){
         const cart_product = cart_product_item();
         const priceArr = [...product_prices];
@@ -73,6 +78,7 @@ export function useCart({
             addItemCart({
                 product_id: id,
                 product_price_id: price.id,
+                color: color ?? null,
                 quantity: min_cart_quantity,
                 amount: (min_cart_quantity)*price.discount_in_price,
             })
@@ -80,6 +86,7 @@ export function useCart({
             updateItemCart({
                 cartItemId: cart_product[0].id,
                 product_id: id,
+                color: color ?? null,
                 product_price_id: price.id,
                 quantity: quantity+cart_quantity_interval,
                 amount: (quantity+cart_quantity_interval)*price.discount_in_price,
@@ -94,6 +101,7 @@ export function useCart({
             addItemBasicCart({
                 product: product,
                 product_price: price,
+                color: color ?? null,
                 quantity: min_cart_quantity,
                 amount: (min_cart_quantity)*price.discount_in_price,
             })
@@ -101,6 +109,7 @@ export function useCart({
             updateItemBasicCart({
                 product: product,
                 product_price: price,
+                color: color ?? null,
                 quantity: quantity+cart_quantity_interval,
                 amount: (quantity+cart_quantity_interval)*price.discount_in_price,
             })
@@ -108,7 +117,7 @@ export function useCart({
       }
     };
     
-    const changeQuantity = (value:number) => {
+    const changeQuantity = (value:number, color?: string|null) => {
       if(auth.authenticated){
         const cart_product = cart_product_item();
         const priceArr = [...product_prices];
@@ -119,6 +128,7 @@ export function useCart({
             product_id: id,
             product_price_id: price.id,
             quantity: value,
+            color: color ?? null,
             amount: (value)*price.discount_in_price,
         })
       }else{
@@ -129,12 +139,13 @@ export function useCart({
             product: product,
             product_price: price,
             quantity: value,
+            color: color ?? null,
             amount: (value)*price.discount_in_price,
         })
       }
     };
     
-    const decrementQuantity = () => {
+    const decrementQuantity = (color?: string|null) => {
       if(auth.authenticated){
         const cart_product = cart_product_item();
         const priceArr = [...product_prices];
@@ -145,6 +156,7 @@ export function useCart({
                 cartItemId: cart_product[0].id,
                 product_id: id,
                 product_price_id: price.id,
+                color: color ?? null,
                 quantity: Math.max(0, quantity-cart_quantity_interval),
                 amount: (Math.max(0, quantity-cart_quantity_interval))*price.discount_in_price,
             })
@@ -160,6 +172,7 @@ export function useCart({
             updateItemBasicCart({
                 product: product,
                 product_price: price,
+                color: color ?? null,
                 quantity: Math.max(0, quantity-cart_quantity_interval),
                 amount: (Math.max(0, quantity-cart_quantity_interval))*price.discount_in_price,
             })
@@ -196,6 +209,7 @@ export function useCart({
             updated_at: '',
             id: data.product.id,
             quantity: data.quantity,
+            color: data.color,
             amount: Number(data.amount.toFixed(2)),
           }];
           const cart_price_total = Number(main_cart.reduce((total:number, next:CartType) => {return total + next.amount}, 0).toFixed(2))
@@ -239,6 +253,7 @@ export function useCart({
             created_at: '',
             updated_at: '',
             id: data.product.id,
+            color: data.color,
             quantity: data.quantity,
             amount: Number(data.amount.toFixed(2)),
           };
@@ -280,6 +295,7 @@ export function useCart({
     }
 
     return {
+        color: color ?? null,
         quantity,
         cartLoading,
         cartItemLoading,

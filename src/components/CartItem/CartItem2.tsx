@@ -4,11 +4,12 @@ import CartQuantity from "../CartQuantity";
 import { CartType } from "../../helper/types";
 import { useCart } from "../../hooks/useCart";
 import './CartItem.css';
+import CartQuantityBtn from "../CartQuantityBtn";
 
 const CartItem2: React.FC<CartType> = ({ product, product_price, amount }) => {
     const [imgLoading, setImgLoading] = useState<boolean>(true);
     const [imgError, setImgLoadingError] = useState<boolean>(false);
-    const {quantity, cartItemLoading, incrementQuantity, changeQuantity, decrementQuantity} = useCart({id: product.id, product:product, product_prices: product.product_prices, min_cart_quantity: product.min_cart_quantity, cart_quantity_interval: product.cart_quantity_interval});
+    const {quantity, color, cartItemLoading, incrementQuantity, changeQuantity, decrementQuantity} = useCart({id: product.id, product:product, product_prices: product.product_prices, min_cart_quantity: product.min_cart_quantity, cart_quantity_interval: product.cart_quantity_interval});
 
     return <div className="cart-item-container">
         <div className="cart-item-row">
@@ -32,7 +33,8 @@ const CartItem2: React.FC<CartType> = ({ product, product_price, amount }) => {
                 </div>
             </div>
             <div className="cart-item-quantity">
-                <CartQuantity quantity={quantity} min_cart_quantity={product.min_cart_quantity} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} loading={cartItemLoading} />
+                {/* <CartQuantity quantity={quantity} min_cart_quantity={product.min_cart_quantity} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} loading={cartItemLoading} /> */}
+                <CartQuantityBtn quantity={quantity} color={color} min_cart_quantity={product.min_cart_quantity} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} loading={cartItemLoading} colors={product.product_colors ?? []} product_id={product.id} />
                 <p className='cart-item-total-price'><strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{amount}</p>
             </div>
         </div>

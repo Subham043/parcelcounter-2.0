@@ -13,7 +13,7 @@ const EmptyCart: React.FC = () => <IonCard className="empty-cart-card">
             <p>Oops! No products available in cart. Please add products to cart</p>
         </IonText>
         <div className="text-center">
-            <Link to="/category">
+            <Link to="/main-product">
                 <IonButton color="dark" size="small" shape="round" className="empty-cart-card-button">
                     Add Products
                 </IonButton>

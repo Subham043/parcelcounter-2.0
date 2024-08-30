@@ -147,6 +147,14 @@ export interface ProductSpecificationType<> {
   updated_at: string;
 }
 
+export interface ProductColorType<> {
+  id: number;
+  name: string;
+  code: string|null;
+  created_at: string;
+  updated_at: string;
+}
+
 export interface ProductImageType<> {
   id: number;
   image: string;
@@ -190,6 +198,7 @@ export interface ProductType<> {
   sub_categories: SubCategoryType[];
   categories: CategoryType[];
   product_specifications: ProductSpecificationType[];
+  product_colors: ProductColorType[];
   product_prices: ProductPriceType[];
   product_images: ProductImageType[];
 }
@@ -218,6 +227,7 @@ export interface CartType<> {
   id: number;
   quantity: number;
   amount: number;
+  color: string|null;
 }
 
 export interface CartChargeType<> {

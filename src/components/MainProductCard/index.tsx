@@ -7,12 +7,13 @@ import { informationCircle } from "ionicons/icons";
 import BulkOffer from "../BulkOffer";
 import { useState } from "react";
 import CartQuantity2 from "../CartQuantity/CartQuantity2";
+import CartQuantityBtn from "../CartQuantityBtn";
 
 
 const MainProductCard: React.FC<ProductType> = (props) => {
     const router = useIonRouter();
     const [isOpen, setIsOpen] = useState<boolean>(false);
-    const {quantity, cartItemLoading, cart_product_item, incrementQuantity, changeQuantity, decrementQuantity} = useCart({id:props.id, product:props, product_prices:props.product_prices, min_cart_quantity:props.min_cart_quantity, cart_quantity_interval:props.cart_quantity_interval});
+    const {quantity, color, cartItemLoading, cart_product_item, incrementQuantity, changeQuantity, decrementQuantity} = useCart({id:props.id, product:props, product_prices:props.product_prices, min_cart_quantity:props.min_cart_quantity, cart_quantity_interval:props.cart_quantity_interval});
     const [imgLoading, setImgLoading] = useState<boolean>(true);
     const [imgError, setImgLoadingError] = useState<boolean>(false);
     
@@ -41,7 +42,8 @@ const MainProductCard: React.FC<ProductType> = (props) => {
                             </button>
                         </div>
                         <div className="col-auto cart-quantity-col">
-                            <CartQuantity2 quantity={quantity} min_cart_quantity={props.min_cart_quantity} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} loading={cartItemLoading} />
+                            <CartQuantityBtn quantity={quantity} color={color} min_cart_quantity={props.min_cart_quantity} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} loading={cartItemLoading} colors={props.product_colors ?? []} product_id={props.id} />
+                            {/* <CartQuantity2 quantity={quantity} min_cart_quantity={props.min_cart_quantity} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} loading={cartItemLoading} /> */}
                         </div>
                     </div>
                 </div>

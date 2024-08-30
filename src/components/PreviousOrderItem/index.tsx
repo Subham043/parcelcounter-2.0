@@ -5,9 +5,10 @@ import { ProductType } from "../../helper/types";
 import { useCart } from "../../hooks/useCart";
 import './PreviouseOrderItem.css';
 import ProductPrice from "../ProductPrice";
+import CartQuantityBtn from "../CartQuantityBtn";
 
 const PreviouseOrderItem: React.FC<ProductType> = (props) => {
-    const {quantity, cartItemLoading, cart_product_item, incrementQuantity, changeQuantity, decrementQuantity} = useCart({id:props.id, product:props, product_prices:props.product_prices, min_cart_quantity:props.min_cart_quantity, cart_quantity_interval:props.cart_quantity_interval});
+    const {quantity, color, cartItemLoading, cart_product_item, incrementQuantity, changeQuantity, decrementQuantity} = useCart({id:props.id, product:props, product_prices:props.product_prices, min_cart_quantity:props.min_cart_quantity, cart_quantity_interval:props.cart_quantity_interval});
     const [imgLoading, setImgLoading] = useState<boolean>(true);
     const [imgError, setImgLoadingError] = useState<boolean>(false);
 
@@ -36,7 +37,8 @@ const PreviouseOrderItem: React.FC<ProductType> = (props) => {
                     </div>
                 </div>
                 <div className="cart-item-quantity previous-order-cart-quantity">
-                    <CartQuantity quantity={quantity} min_cart_quantity={props.min_cart_quantity} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} loading={cartItemLoading} />
+                    <CartQuantityBtn quantity={quantity} color={color} min_cart_quantity={props.min_cart_quantity} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} loading={cartItemLoading} colors={props.product_colors ?? []} product_id={props.id} />
+                    {/* <CartQuantity quantity={quantity} min_cart_quantity={props.min_cart_quantity} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} loading={cartItemLoading} /> */}
                 </div>
             </div>
         </div>

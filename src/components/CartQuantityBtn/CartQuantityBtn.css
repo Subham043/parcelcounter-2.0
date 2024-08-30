@@ -1,0 +1,213 @@
+.cart-quantity-btn-3 .add-btn-3{
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ gap: 8px;
+ padding: 7px 10px;
+ background-color: #fff;
+ color: #222;
+ border: 1px solid #fff;
+ border-radius: 5px;
+ font-size: 1rem;
+ font-weight: bold;
+ text-transform: uppercase;
+}
+
+.cart-quantity-btn-3 .add-btn-3 .add-btn-3-svg-icon{
+ width: 1.2em;
+ height: 1.2em;
+}
+
+.cart-quantity-btn-3 .edit-btn-3{
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ gap: 8px;
+ padding: 5px;
+ background-color: #fff;
+ color: #222;
+ border: 1px solid #ccc;
+ border-radius: 5px;
+ font-size: 1rem;
+ font-weight: bold;
+ text-transform: uppercase;
+}
+
+.cart-quantity-btn-3 .edit-btn-3 .edit-btn-3-svg-icon{
+ width: 1.2em;
+ height: 1.2em;
+}
+
+.cart-quantity-btn-3 .cart-quantity-btn-main-3{
+ max-width: 115px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ gap: 5px;
+ padding: 5px 7px;
+ background-color: #fff;
+ color: #222;
+ border: 1px solid #ccc;
+ border-radius: 5px;
+}
+
+.cart-quantity-btn-3 .cart-quantity-btn-main-3 .cart-quantity-btn-minus-3, .cart-quantity-btn-3 .cart-quantity-btn-main-3 .cart-quantity-btn-add-3{
+ background-color: transparent;
+ border: none;
+ font-size: 1.5rem;
+ color: #222;
+ width: auto;
+}
+
+.cart-quantity-btn-3 .cart-quantity-btn-main-3 .cart-quantity-input-3{
+ background-color: transparent;
+ border: none;
+ font-size: 1rem;
+ color: #000;
+ flex: 1;
+ display: inline-block;
+ max-width: 50%;
+ border-left: 1px solid #ccc;
+ border-right: 1px solid #ccc;
+ text-align: center;
+ outline: none;
+ margin: 0;
+ min-width: fit-content;
+ padding: 0 5px;
+}
+
+.cart-quantity-btn-3 .cart-quantity-btn-main-3 input.cart-quantity-input-3{
+ min-width: unset;
+}
+
+.cart-quantity-btn-3 .cart-quantity-modal-btn-3{
+ display: flex;
+ gap: 5px;
+}
+
+.cart-quantity-modal-main{
+ --height: auto;
+}
+
+.cart-quantity-modal-main-container{
+ margin: 1rem 0;
+ margin-bottom: 2rem !important;
+}
+
+.cart-quantity-modal-main-container .cart-quantity-btn-3 .cart-quantity-btn-main-3{
+ padding: 5px 10px;
+ gap: 8px;
+}
+
+.cart-quantity-modal-main-container{
+ padding: 0 20px;
+}
+
+.cart-quantity-btn-modal-3{
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ gap: 10px;
+}
+
+.cart-quantity-btn-modal-3 .cart-quantity-btn-modal-add-3{
+ padding: 7px 10px;
+ background-color: #222;
+ color: #fff;
+ border: 1px solid #222;
+ border-radius: 5px;
+ font-size: 1rem;
+ font-weight: bold;
+ text-transform: uppercase;
+}
+
+.cart-quantity-modal-main-header{
+ border-bottom: 1px solid #ccc;
+ padding-bottom: 10px;
+ margin-bottom: 15px;
+}
+
+.cart-quantity-modal-main-title{
+ font-size: 1.2rem;
+ font-weight: bold;
+ color: #222;
+ margin: 0;
+ margin-bottom: 5px;
+}
+
+.cart-quantity-modal-main-subtitle{
+ font-size: 0.9rem;
+ font-weight: bold;
+ color: #222;
+ margin: 0;
+ margin-bottom: 5px;
+ font-style: italic;
+}
+
+.cart-quantity-modal-main-subtitle code{
+ color: green;
+ font-weight: normal;
+}
+
+.cart-quantity-modal-main-body{
+ max-height: 300px;
+ overflow: hidden;
+ overflow-y: auto;
+}
+
+.cart-quantity-modal-main-color-title{
+ font-size: 0.9rem;
+ font-weight: bold;
+ color: #222;
+ margin: 0;
+ margin-bottom: 15px;
+}
+
+.cart-quantity-modal-main-body{
+ border-bottom: 1px dashed #ccc;
+ padding-bottom: 10px;
+ margin-bottom: 15px;
+}
+
+.cart-quantity-modal-main-color-container .cart-quantity-modal-main-color{
+ padding: 5px;
+ border-radius: 5px;
+ display: flex;
+ flex-wrap: wrap;
+ gap: 10px;
+ align-items: center;
+ text-transform: capitalize;
+ font-size: 0.9rem;
+ font-weight: bold;
+}
+
+.cart-quantity-modal-main-color-container .cart-quantity-modal-main-color span{
+ background-color: aquamarine;
+ width: 30px;
+ height: 30px;
+ border-radius: 5px;
+ display: inline-block;
+}
+
+.cart-quantity-modal-main-color-inactive{
+ width: fit-content;
+ display: block;
+ border-radius: 5px;
+ margin-bottom: 5px;
+}
+
+.cart-quantity-modal-main-color-inactive.color-active{
+ border: 1px solid #ccc;
+}
+
+.cart-quantity-btn-modal-3.cart-quantity-btn-3 .add-btn-3{
+ background-color: #222;
+ color: #fff;
+ border: 1px solid #222;
+ width: 100%;
+}
+
+.cart-quantity-btn-add-3-spinner{
+ width: 15px !important;
+ height: 15px !important;
+}

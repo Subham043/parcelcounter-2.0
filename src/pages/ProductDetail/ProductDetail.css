@@ -205,3 +205,11 @@
 .product-detail-page-main-description{
     text-align: justify;
 }
+
+.product-detail-page-main-cart-quantity .cart-quantity-btn-3 .add-btn-3{
+    margin-left: auto;
+}
+
+.product-detail-page-main-cart-quantity .cart-quantity-btn-3 .cart-quantity-modal-btn-3{
+    justify-content: flex-end;
+}
