@@ -6,6 +6,7 @@ import { ProductColorType } from "../../helper/types";
 
 type CartQuantityType = {
     product_id:number;
+    product_name:string;
     quantity:number;
     color:string|null;
     min_cart_quantity:number;
@@ -82,7 +83,7 @@ const CartQuantityModalBtn:FC<{setIsOpen: React.Dispatch<React.SetStateAction<bo
  </div>
 }
 
-const CartQuantityModal:FC<CartQuantityType & {isOpen:boolean, setIsOpen: React.Dispatch<React.SetStateAction<boolean>>}> = ({isOpen, color, colors, setIsOpen, quantity, min_cart_quantity, loading, product_id, incrementQuantity, decrementQuantity, changeQuantity}) => {
+const CartQuantityModal:FC<CartQuantityType & {isOpen:boolean, setIsOpen: React.Dispatch<React.SetStateAction<boolean>>}> = ({isOpen, color, colors, setIsOpen, quantity, product_name, min_cart_quantity, loading, product_id, incrementQuantity, decrementQuantity, changeQuantity}) => {
  const [selectedColor, setSelectedColor] = useState<string|null>(null);
  const [quantityValue, setQuantityValue] = useState<number>(0);
  useEffect(() => {
@@ -108,7 +109,7 @@ const CartQuantityModal:FC<CartQuantityType & {isOpen:boolean, setIsOpen: React.
   <IonModal isOpen={isOpen} onDidDismiss={()=>setIsOpen(false)} id={`cart-quantity-edit-main-modal-${product_id}`} className="cart-quantity-modal-main" initialBreakpoint={1} breakpoints={[0, 1]}>
     <div className="page-padding cart-quantity-modal-main-container">
      <div className="cart-quantity-modal-main-header">
-      <p className="cart-quantity-modal-main-title">Container</p>
+      <p className="cart-quantity-modal-main-title">{product_name}</p>
       <p className="cart-quantity-modal-main-subtitle"><code>Minimum Cart Quantity: </code>{min_cart_quantity}</p>
      </div>
      {colors.length>0 && <div className="cart-quantity-modal-main-body">
@@ -136,14 +137,14 @@ const CartQuantityModal:FC<CartQuantityType & {isOpen:boolean, setIsOpen: React.
  </div>
 }
 
-const CartQuantityBtn:FC<CartQuantityType> = ({quantity, color, colors, min_cart_quantity, product_id, loading, incrementQuantity, decrementQuantity, changeQuantity}) => {
+const CartQuantityBtn:FC<CartQuantityType> = ({quantity, color, colors, product_name, min_cart_quantity, product_id, loading, incrementQuantity, decrementQuantity, changeQuantity}) => {
  const [isOpen, setIsOpen] = useState<boolean>(false);
  return <div className="cart-quantity-btn-3">
   {quantity===0 ? 
    (colors.length===0 ? <AddBtn loading={loading} incrementQuantity={() => incrementQuantity(null)} /> : <AddBtn loading={loading} incrementQuantity={() => setIsOpen(true)} />) : 
    <CartQuantityModalBtn setIsOpen={setIsOpen} loading={loading} quantity={quantity} color={color} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} />
   }
-   <CartQuantityModal isOpen={isOpen} setIsOpen={setIsOpen} colors={colors} color={color} product_id={product_id} quantity={quantity} min_cart_quantity={min_cart_quantity} loading={loading} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} />
+   <CartQuantityModal isOpen={isOpen} setIsOpen={setIsOpen} colors={colors} color={color} product_name={product_name} product_id={product_id} quantity={quantity} min_cart_quantity={min_cart_quantity} loading={loading} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} />
  </div>
 }
 

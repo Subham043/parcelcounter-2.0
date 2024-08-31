@@ -127,7 +127,7 @@ const CheckoutModal: React.FC<Props> = ({isOpen, setIsOpen, selectedBillingAddre
                             <h6>Pay Online - PayU</h6>
                         </IonLabel>
                     </div>
-                    <div className={modeOfPayment==='Online - CashFree' ? 'billing-info-section-card-active' : 'billing-info-section-card'} onClick={()=>setModeOfPayment('Online - CashFree')}>
+                    {/* <div className={modeOfPayment==='Online - CashFree' ? 'billing-info-section-card-active' : 'billing-info-section-card'} onClick={()=>setModeOfPayment('Online - CashFree')}>
                         <IonImg
                             src='/images/cashfree.webp'
                             alt="Sliders"
@@ -156,7 +156,7 @@ const CheckoutModal: React.FC<Props> = ({isOpen, setIsOpen, selectedBillingAddre
                         <IonLabel className='billing-info-section-card-text'>
                             <h6>Pay Online - Razorpay</h6>
                         </IonLabel>
-                    </div>
+                    </div> */}
                     <div className={modeOfPayment==='Cash On Delivery' ? 'billing-info-section-card-active' : 'billing-info-section-card'} onClick={()=>setModeOfPayment('Cash On Delivery')}>
                         <IonImg
                             src='/images/money.webp'
