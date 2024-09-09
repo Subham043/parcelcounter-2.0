@@ -34,7 +34,7 @@ const CartItem2: React.FC<CartType> = ({ product, product_price, amount }) => {
             </div>
             <div className="cart-item-quantity">
                 {/* <CartQuantity quantity={quantity} min_cart_quantity={product.min_cart_quantity} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} loading={cartItemLoading} /> */}
-                <CartQuantityBtn quantity={quantity} color={color} min_cart_quantity={product.min_cart_quantity} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} loading={cartItemLoading} colors={product.product_colors ?? []} product_id={product.id} product_name={product.name} />
+                <CartQuantityBtn quantity={quantity} color={color} min_cart_quantity={product.min_cart_quantity} cart_quantity_interval={product.cart_quantity_interval} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} loading={cartItemLoading} colors={product.product_colors ?? []} product_id={product.id} product_name={product.name} />
                 <p className='cart-item-total-price'><strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{amount}</p>
             </div>
         </div>

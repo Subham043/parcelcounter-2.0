@@ -10,6 +10,7 @@ type CartQuantityType = {
     quantity:number;
     color:string|null;
     min_cart_quantity:number;
+    cart_quantity_interval:number;
     loading:boolean;
     incrementQuantity:(color?: string | null)=>void;
     decrementQuantity:(color?: string | null)=>void;
@@ -83,7 +84,7 @@ const CartQuantityModalBtn:FC<{setIsOpen: React.Dispatch<React.SetStateAction<bo
  </div>
 }
 
-const CartQuantityModal:FC<CartQuantityType & {isOpen:boolean, setIsOpen: React.Dispatch<React.SetStateAction<boolean>>}> = ({isOpen, color, colors, setIsOpen, quantity, product_name, min_cart_quantity, loading, product_id, incrementQuantity, decrementQuantity, changeQuantity}) => {
+const CartQuantityModal:FC<CartQuantityType & {isOpen:boolean, setIsOpen: React.Dispatch<React.SetStateAction<boolean>>}> = ({isOpen, color, colors, setIsOpen, quantity, product_name, min_cart_quantity, cart_quantity_interval, loading, product_id, incrementQuantity, decrementQuantity, changeQuantity}) => {
  const [selectedColor, setSelectedColor] = useState<string|null>(null);
  const [quantityValue, setQuantityValue] = useState<number>(0);
  useEffect(() => {
@@ -91,6 +92,12 @@ const CartQuantityModal:FC<CartQuantityType & {isOpen:boolean, setIsOpen: React.
  }, [color])
 
  const handleValueChange = (value: number) => {
+    if (!isNaN(value)) {
+      value = Math.round(value / cart_quantity_interval) * cart_quantity_interval;
+    } else {
+      value = min_cart_quantity;
+    }
+
     setQuantityValue(value);
   };
  const updateQuantity = () => {
@@ -111,6 +118,7 @@ const CartQuantityModal:FC<CartQuantityType & {isOpen:boolean, setIsOpen: React.
      <div className="cart-quantity-modal-main-header">
       <p className="cart-quantity-modal-main-title">{product_name}</p>
       <p className="cart-quantity-modal-main-subtitle"><code>Minimum Cart Quantity: </code>{min_cart_quantity}</p>
+      <p className="cart-quantity-modal-main-subtitle"><code style={{color: 'red'}}>Note: </code>You cannot update the cart quantity, if you decrease the quantity below {min_cart_quantity}. If you edit the quantity manually it will be rounded up to the nearest multiple of {cart_quantity_interval}.</p>
      </div>
      {colors.length>0 && <div className="cart-quantity-modal-main-body">
        <p className="cart-quantity-modal-main-color-title">Pick a Color:</p>
@@ -137,14 +145,14 @@ const CartQuantityModal:FC<CartQuantityType & {isOpen:boolean, setIsOpen: React.
  </div>
 }
 
-const CartQuantityBtn:FC<CartQuantityType> = ({quantity, color, colors, product_name, min_cart_quantity, product_id, loading, incrementQuantity, decrementQuantity, changeQuantity}) => {
+const CartQuantityBtn:FC<CartQuantityType> = ({quantity, color, colors, product_name, min_cart_quantity, cart_quantity_interval, product_id, loading, incrementQuantity, decrementQuantity, changeQuantity}) => {
  const [isOpen, setIsOpen] = useState<boolean>(false);
  return <div className="cart-quantity-btn-3">
   {quantity===0 ? 
    (colors.length===0 ? <AddBtn loading={loading} incrementQuantity={() => incrementQuantity(null)} /> : <AddBtn loading={loading} incrementQuantity={() => setIsOpen(true)} />) : 
    <CartQuantityModalBtn setIsOpen={setIsOpen} loading={loading} quantity={quantity} color={color} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} />
   }
-   <CartQuantityModal isOpen={isOpen} setIsOpen={setIsOpen} colors={colors} color={color} product_name={product_name} product_id={product_id} quantity={quantity} min_cart_quantity={min_cart_quantity} loading={loading} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} />
+   <CartQuantityModal isOpen={isOpen} setIsOpen={setIsOpen} colors={colors} color={color} product_name={product_name} product_id={product_id} quantity={quantity} min_cart_quantity={min_cart_quantity} cart_quantity_interval={cart_quantity_interval} loading={loading} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} />
  </div>
 }
 
