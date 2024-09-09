@@ -28,7 +28,7 @@ const ProductDetailCartQuantity = ({product}:{product:ProductType}) => {
   const {quantity, color, cartItemLoading, incrementQuantity, decrementQuantity, changeQuantity} = useCart({id:product.id, product, product_prices:product.product_prices, min_cart_quantity:product.min_cart_quantity, cart_quantity_interval:product.cart_quantity_interval});
   // return <CartQuantity2 quantity={quantity} min_cart_quantity={product.min_cart_quantity} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} loading={cartItemLoading} />
   return <div className='product-detail-page-main-cart-quantity'>
-    <CartQuantityBtn quantity={quantity} color={color} min_cart_quantity={product.min_cart_quantity} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} loading={cartItemLoading} colors={product.product_colors ?? []} product_id={product.id} product_name={product.name} />
+    <CartQuantityBtn quantity={quantity} color={color} min_cart_quantity={product.min_cart_quantity} cart_quantity_interval={product.cart_quantity_interval} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} loading={cartItemLoading} colors={product.product_colors ?? []} product_id={product.id} product_name={product.name} />
   </div>
 }
 

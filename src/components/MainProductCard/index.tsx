@@ -42,7 +42,7 @@ const MainProductCard: React.FC<ProductType> = (props) => {
                             </button>
                         </div>
                         <div className="col-auto cart-quantity-col">
-                            <CartQuantityBtn quantity={quantity} color={color} min_cart_quantity={props.min_cart_quantity} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} loading={cartItemLoading} colors={props.product_colors ?? []} product_id={props.id} product_name={props.name} />
+                            <CartQuantityBtn quantity={quantity} color={color} min_cart_quantity={props.min_cart_quantity} cart_quantity_interval={props.cart_quantity_interval} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} loading={cartItemLoading} colors={props.product_colors ?? []} product_id={props.id} product_name={props.name} />
                             {/* <CartQuantity2 quantity={quantity} min_cart_quantity={props.min_cart_quantity} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} loading={cartItemLoading} /> */}
                         </div>
                     </div>

@@ -37,7 +37,7 @@ const PreviouseOrderItem: React.FC<ProductType> = (props) => {
                     </div>
                 </div>
                 <div className="cart-item-quantity previous-order-cart-quantity">
-                    <CartQuantityBtn quantity={quantity} color={color} min_cart_quantity={props.min_cart_quantity} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} loading={cartItemLoading} colors={props.product_colors ?? []} product_id={props.id} product_name={props.name} />
+                    <CartQuantityBtn quantity={quantity} color={color} min_cart_quantity={props.min_cart_quantity} cart_quantity_interval={props.cart_quantity_interval} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} loading={cartItemLoading} colors={props.product_colors ?? []} product_id={props.id} product_name={props.name} />
                     {/* <CartQuantity quantity={quantity} min_cart_quantity={props.min_cart_quantity} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} loading={cartItemLoading} /> */}
                 </div>
             </div>
