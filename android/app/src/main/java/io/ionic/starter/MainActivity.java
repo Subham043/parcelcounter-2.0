@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package io.parcelcounter.app;
 
 import com.getcapacitor.BridgeActivity;
 
