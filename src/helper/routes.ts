@@ -9,6 +9,7 @@ type api_routes = {
   reset_password: string;
   email_verify: string;
   enquiry: string;
+  promotion: string;
   products: string;
   categories: string;
   sub_categories: string;
@@ -69,6 +70,7 @@ export const api_routes: api_routes = {
   reset_password: "/api/v1/auth/reset-password",
   email_verify: "/api/v1/email/verify/resend-notification",
   enquiry: "/api/v1/contact-form",
+  promotion: "/api/v1/promotion",
   products: "/api/v1/product",
   categories: "/api/v1/category",
   sub_categories: "/api/v1/sub-category",

@@ -13,9 +13,10 @@ type Props = {
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
     selectedBillingAddressData: number;
     selectedBillingInformationData: number;
+    selectedDeliverySlotData: 'Morning: 9:00 AM - 11:00 AM'|'Evening: 6:00 PM - 8:00 PM'|'Afternoon: 2:00 PM - 4:00 PM'
 }
 
-const CheckoutModal: React.FC<Props> = ({isOpen, setIsOpen, selectedBillingAddressData, selectedBillingInformationData}) => {
+const CheckoutModal: React.FC<Props> = ({isOpen, setIsOpen, selectedBillingAddressData, selectedBillingInformationData, selectedDeliverySlotData}) => {
     const axiosPrivate = useAxiosPrivate();
     const { toastSuccess, toastError} = useToast();
     const history = useHistory();
@@ -46,7 +47,8 @@ const CheckoutModal: React.FC<Props> = ({isOpen, setIsOpen, selectedBillingAddre
             billing_address_id: selectedBillingAddressData, 
             billing_information_id: selectedBillingInformationData, 
             order_mode: 'APP', 
-            mode_of_payment: modeOfPayment, 
+            mode_of_payment: modeOfPayment,
+            delivery_slot: selectedDeliverySlotData, 
             accept_terms: acceptTerms ? 1 : 0, 
             include_gst: includeGst ? 1 : 0
           });

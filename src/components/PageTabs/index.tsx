@@ -28,6 +28,7 @@ import Cart2 from "../../pages/Cart/Cart2";
 import Product2 from "../../pages/Product/Product2";
 import ProductDetail2 from "../../pages/ProductDetail/ProductDetail2";
 import PreviouslyOrderedProduct from "../../pages/PreviouslyOrderedProduct";
+import Promotion from "../../pages/Promotion";
 
 const PageTabs: React.FC = () => {
 
@@ -75,6 +76,7 @@ const PageTabs: React.FC = () => {
             <Route exact path="/account" component={auth.authenticated ? Account : Login}></Route>
             <Route exact path="/setting" component={Setting}></Route>
             <Route exact path="/contact" component={Contact}></Route>
+            <Route exact path="/promotion" component={Promotion}></Route>
             <Route exact path="/billing-address" component={BillingAddress}></Route>
             <Route exact path="/billing-information" component={BillingInformation}></Route>
             <Route exact path="/orders" component={Orders}></Route>

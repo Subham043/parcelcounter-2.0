@@ -10,7 +10,7 @@ import {
     IonCol,
     IonButton,
 } from "@ionic/react";
-import { bagCheckOutline, cogOutline, locationOutline, logOutOutline, mailUnreadOutline, newspaperOutline, peopleCircleOutline } from "ionicons/icons";
+import { bagCheckOutline, cogOutline, locationOutline, logOutOutline, mailUnreadOutline, megaphoneOutline, newspaperOutline, peopleCircleOutline } from "ionicons/icons";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
@@ -79,6 +79,12 @@ const Account: React.FC = () => {
                     <IonItem lines="full" detail={true}>
                         <IonLabel>Contact Us</IonLabel>
                         <IonIcon icon={mailUnreadOutline} slot="start"></IonIcon>
+                    </IonItem>
+                </Link>
+                <Link className="no-underline" to="/promotion">
+                    <IonItem lines="full" detail={true}>
+                        <IonLabel>Promotion</IonLabel>
+                        <IonIcon icon={megaphoneOutline} slot="start"></IonIcon>
                     </IonItem>
                 </Link>
                 {

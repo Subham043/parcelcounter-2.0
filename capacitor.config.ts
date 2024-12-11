@@ -1,7 +1,7 @@
 import type { CapacitorConfig } from "@capacitor/cli";
 
 const config: CapacitorConfig = {
-  appId: "io.parcelcounter.app",
+  appId: "in.parcelcounter.app",
   appName: "Parcelcounter",
   webDir: "dist",
   // plugins: {

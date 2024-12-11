@@ -9,7 +9,7 @@ import { api_routes } from '../../helper/routes';
 import { useAuth } from '../../context/AuthProvider';
 import { useLocation } from 'react-router';
 import LoadingCard from '../../components/LoadingCard';
-import { chevronForwardOutline, locationOutline, newspaperOutline, peopleCircleOutline } from 'ionicons/icons';
+import { chevronForwardOutline, locationOutline, newspaperOutline, peopleCircleOutline, timeOutline } from 'ionicons/icons';
 import { BillingAddressResponseType, BillingInformationResponseType, LegalResponseType } from '../../helper/types';
 import { Browser } from '@capacitor/browser';
 import CartItem2 from '../../components/CartItem/CartItem2';
@@ -17,6 +17,7 @@ import BillingInformationModal from '../../components/BillingInformationModal';
 import BillingAddressModal from '../../components/BillingAddressModal';
 import CheckoutModal from '../../components/CheckoutModal';
 import { axiosPublic } from '../../../axios';
+import DeliverySlotModal from '../../components/DeliverySlotModal';
 
 const Cart2: React.FC = () => {
     
@@ -45,8 +46,10 @@ const Cart2: React.FC = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [isBillingInfoOpen, setIsBillingInfoOpen] = useState<boolean>(false);
     const [isBillingAddressOpen, setIsBillingAddressOpen] = useState<boolean>(false);
+    const [isDeliverySlotOpen, setIsDeliverySlotOpen] = useState<boolean>(false)
     const [selectedBillingInformationData, setSelectedBillingInformationData] = useState<number>(0)
     const [selectedBillingAddressData, setSelectedBillingAddressData] = useState<number>(0)
+    const [selectedDeliverySlotData, setSelectedDeliverySlotData] = useState<'Morning: 9:00 AM - 11:00 AM'|'Evening: 6:00 PM - 8:00 PM'|'Afternoon: 2:00 PM - 4:00 PM'>('Morning: 9:00 AM - 11:00 AM')
     const { data:billingInformationData, isLoading:billingInformationLoading } = useSWR<BillingInformationResponseType>(auth.authenticated ? api_routes.billing_information_all : null, fetcher);
     const { data:billingAddressData, isLoading:billingAddressLoading } = useSWR<BillingAddressResponseType>(auth.authenticated ? api_routes.billing_address_all : null, fetcher);
     const { data:legalData } = useSWR<LegalResponseType>(api_routes.legal);
@@ -134,6 +137,21 @@ const Cart2: React.FC = () => {
                                         }
                                     </div>
                                 </div>
+                                <div className="page-padding mt-1">
+                                    <div className="delivery-address-card">
+                                        <div className='delivery-address-header'>
+                                            <h6><IonIcon icon={timeOutline} className='svg-icon' /> <span>Delivery Slot</span></h6>
+                                            <div className="delivery-select">
+                                                <button onClick={()=>setIsDeliverySlotOpen(true)}>Change</button>
+                                            </div>
+                                        </div>
+                                        <div className="delivery-card-row">
+                                            <IonLabel className="delivery-detail">
+                                                <p>{selectedDeliverySlotData}</p>
+                                            </IonLabel>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div className='cart-message'>
                                     <p>You have realized a minimum savings of 20% - 25% on your standard purchase when compared to retail price.</p>
                                 </div>
@@ -259,7 +277,9 @@ const Cart2: React.FC = () => {
                                 
                                 <BillingAddressModal isOpen={isBillingAddressOpen} setIsOpen={setIsBillingAddressOpen} billingAddressData={billingAddressData} billingAddressLoading={billingAddressLoading} selectedBillingAddressData={selectedBillingAddressData} setSelectedBillingAddressData={setSelectedBillingAddressData} />
 
-                                <CheckoutModal isOpen={isOpen} setIsOpen={setIsOpen} selectedBillingAddressData={selectedBillingAddressData} selectedBillingInformationData={selectedBillingInformationData} />
+                                <DeliverySlotModal isOpen={isDeliverySlotOpen} setIsOpen={setIsDeliverySlotOpen} selectedDeliverySlotData={selectedDeliverySlotData} setSelectedDeliverySlotData={setSelectedDeliverySlotData} />
+
+                                <CheckoutModal isOpen={isOpen} setIsOpen={setIsOpen} selectedBillingAddressData={selectedBillingAddressData} selectedBillingInformationData={selectedBillingInformationData} selectedDeliverySlotData={selectedDeliverySlotData} />
 
                                 <div className="cart-fixed-spacing-2"></div>
                                 

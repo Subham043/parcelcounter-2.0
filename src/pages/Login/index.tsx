@@ -7,7 +7,7 @@ import { useState } from 'react';
 import LoginWithPhone from '../../components/Login/LoginWithPhone';
 
 const Login: React.FC = () =>{
-    const [loginType, setLoginType] = useState('email')
+    const [loginType, setLoginType] = useState('phone')
     return <IonPage>
         <MainHeader isMainHeader={true} />
         <IonContent
@@ -24,11 +24,11 @@ const Login: React.FC = () =>{
 
                     <IonCardContent>
                         <IonSegment color="dark" mode='ios' value={loginType} onIonChange={(e)=>setLoginType(e.detail.value as string ?? '')}>
-                            <IonSegmentButton value="email">
-                                <IonLabel>Login With Email</IonLabel>
-                            </IonSegmentButton>
                             <IonSegmentButton value="phone">
                                 <IonLabel>Login With Phone</IonLabel>
+                            </IonSegmentButton>
+                            <IonSegmentButton value="email">
+                                <IonLabel>Login With Email</IonLabel>
                             </IonSegmentButton>
                         </IonSegment>
                         {loginType==='email' ? <LoginwithEmail /> : <LoginWithPhone />}

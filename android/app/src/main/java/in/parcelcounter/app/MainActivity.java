@@ -1,4 +1,4 @@
-package io.parcelcounter.app;
+package in.parcelcounter.app;
 
 import com.getcapacitor.BridgeActivity;
 

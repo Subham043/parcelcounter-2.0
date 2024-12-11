@@ -19,7 +19,7 @@ const schema = yup
       .required()
       .min(10, "Must be exactly 10 digits")
       .max(10, "Must be exactly 10 digits"),
-    email: yup.string().email().required(),
+    email: yup.string().email().notRequired(),
     password: yup.string().required(),
     confirm_password: yup
       .string()
@@ -37,8 +37,8 @@ const fields = [
       inputmode: "text",
     },
     {
-      placeholder: "Enter email",
-      label: "Email",
+      placeholder: "Enter email (optional)",
+      label: "Email (optional)",
       type: "email",
       name: "email",
       inputmode: "email",
