@@ -2,6 +2,7 @@ type api_routes = {
   login: string;
   login_phone: string;
   login_phone_otp: string;
+  login_phone_password: string;
   logout: string;
   register: string;
   forgot_password: string;
@@ -42,6 +43,7 @@ type api_routes = {
   billing_information_create: string;
   billing_information_update: string;
   billing_information_delete: string;
+  delivery_slot: string;
   cart: string;
   rating: string;
   coupon_apply: string;
@@ -64,6 +66,7 @@ export const api_routes: api_routes = {
   login: "/api/v1/auth/login",
   login_phone: "/api/v1/auth/login-phone",
   login_phone_otp: "/api/v1/auth/login-phone-otp",
+  login_phone_password: "/api/v1/auth/login-phone-password",
   logout: "/api/v1/auth/logout",
   register: "/api/v1/auth/register",
   forgot_password: "/api/v1/auth/forgot-password",
@@ -103,6 +106,7 @@ export const api_routes: api_routes = {
   billing_information_create: "/api/v1/billing-information/create",
   billing_information_update: "/api/v1/billing-information/update",
   billing_information_delete: "/api/v1/billing-information/delete",
+  delivery_slot: "/api/v1/delivery-slot",
   cart: "/api/v1/cart",
   rating: "/api/v1/product/main/reviews",
   coupon_apply: "/api/v1/coupon/apply",

@@ -10,14 +10,14 @@ import { useAuth } from '../../context/AuthProvider';
 import { useLocation } from 'react-router';
 import LoadingCard from '../../components/LoadingCard';
 import { chevronForwardOutline, locationOutline, newspaperOutline, peopleCircleOutline, timeOutline } from 'ionicons/icons';
-import { BillingAddressResponseType, BillingInformationResponseType, LegalResponseType } from '../../helper/types';
+import { BillingAddressResponseType, BillingInformationResponseType, DeliverySlotNewResponseType, LegalResponseType } from '../../helper/types';
 import { Browser } from '@capacitor/browser';
 import CartItem2 from '../../components/CartItem/CartItem2';
 import BillingInformationModal from '../../components/BillingInformationModal';
 import BillingAddressModal from '../../components/BillingAddressModal';
 import CheckoutModal from '../../components/CheckoutModal';
 import { axiosPublic } from '../../../axios';
-import DeliverySlotModal from '../../components/DeliverySlotModal';
+import DeliverySlotNewModal from '../../components/DeliverySlotNewModal';
 
 const Cart2: React.FC = () => {
     
@@ -44,14 +44,16 @@ const Cart2: React.FC = () => {
     );
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [isCODAllowed, setIsCODAllowed] = useState<boolean>(true);
     const [isBillingInfoOpen, setIsBillingInfoOpen] = useState<boolean>(false);
     const [isBillingAddressOpen, setIsBillingAddressOpen] = useState<boolean>(false);
-    const [isDeliverySlotOpen, setIsDeliverySlotOpen] = useState<boolean>(false)
+    const [isDeliverySlotNewOpen, setIsDeliverySlotNewOpen] = useState<boolean>(false)
     const [selectedBillingInformationData, setSelectedBillingInformationData] = useState<number>(0)
     const [selectedBillingAddressData, setSelectedBillingAddressData] = useState<number>(0)
-    const [selectedDeliverySlotData, setSelectedDeliverySlotData] = useState<'Morning: 9:00 AM - 11:00 AM'|'Evening: 6:00 PM - 8:00 PM'|'Afternoon: 2:00 PM - 4:00 PM'>('Morning: 9:00 AM - 11:00 AM')
+    const [selectedDeliverySlotNewData, setSelectedDeliverySlotNewData] = useState<string|undefined>()
     const { data:billingInformationData, isLoading:billingInformationLoading } = useSWR<BillingInformationResponseType>(auth.authenticated ? api_routes.billing_information_all : null, fetcher);
     const { data:billingAddressData, isLoading:billingAddressLoading } = useSWR<BillingAddressResponseType>(auth.authenticated ? api_routes.billing_address_all : null, fetcher);
+    const { data:deliverySlotNewData, isLoading:deliverySlotNewLoading } = useSWR<DeliverySlotNewResponseType>(auth.authenticated ? api_routes.delivery_slot : null, fetcher);
     const { data:legalData } = useSWR<LegalResponseType>(api_routes.legal);
     useEffect(()=>{
         let isMounted = true;
@@ -138,20 +140,25 @@ const Cart2: React.FC = () => {
                                     </div>
                                 </div>
                                 <div className="page-padding mt-1">
-                                    <div className="delivery-address-card">
+                                    {auth.authenticated && <div className="delivery-address-card">
                                         <div className='delivery-address-header'>
                                             <h6><IonIcon icon={timeOutline} className='svg-icon' /> <span>Delivery Slot</span></h6>
                                             <div className="delivery-select">
-                                                <button onClick={()=>setIsDeliverySlotOpen(true)}>Change</button>
+                                                <button onClick={()=>setIsDeliverySlotNewOpen(true)}>{deliverySlotNewData && deliverySlotNewData.delivery_slot.filter(item => item.name===selectedDeliverySlotNewData).length>0 ? 'Change' : 'Select'}</button>
                                             </div>
                                         </div>
+                                        {(!deliverySlotNewLoading && deliverySlotNewData && deliverySlotNewData.delivery_slot.length>0) ? <div className="delivery-card-row">
+                                            <IonLabel className="delivery-detail">
+                                                {deliverySlotNewData.delivery_slot.filter(item => item.name===selectedDeliverySlotNewData).length>0 ? <p>{deliverySlotNewData.delivery_slot.filter(item => item.name===selectedDeliverySlotNewData)[0].name}</p> : <p><i>Please select a delivery slot</i></p>}
+                                            </IonLabel>
+                                        </div>:
                                         <div className="delivery-card-row">
                                             <IonLabel className="delivery-detail">
-                                                <p>{selectedDeliverySlotData}</p>
+                                                <p><i>No delivery slots available</i></p>
                                             </IonLabel>
-                                        </div>
-                                    </div>
-                                </div>
+                                        </div>}
+                                    </div>}
+                                </div>
                                 <div className='cart-message'>
                                     <p>You have realized a minimum savings of 20% - 25% on your standard purchase when compared to retail price.</p>
                                 </div>
@@ -277,9 +284,9 @@ const Cart2: React.FC = () => {
                                 
                                 <BillingAddressModal isOpen={isBillingAddressOpen} setIsOpen={setIsBillingAddressOpen} billingAddressData={billingAddressData} billingAddressLoading={billingAddressLoading} selectedBillingAddressData={selectedBillingAddressData} setSelectedBillingAddressData={setSelectedBillingAddressData} />
 
-                                <DeliverySlotModal isOpen={isDeliverySlotOpen} setIsOpen={setIsDeliverySlotOpen} selectedDeliverySlotData={selectedDeliverySlotData} setSelectedDeliverySlotData={setSelectedDeliverySlotData} />
+                                <DeliverySlotNewModal isOpen={isDeliverySlotNewOpen} setIsOpen={setIsDeliverySlotNewOpen} deliverySlotNewData={deliverySlotNewData} deliverySlotNewLoading={deliverySlotNewLoading} selectedDeliverySlotNewData={selectedDeliverySlotNewData} setSelectedDeliverySlotNewData={setSelectedDeliverySlotNewData} setIsCODAllowed={setIsCODAllowed}/>
 
-                                <CheckoutModal isOpen={isOpen} setIsOpen={setIsOpen} selectedBillingAddressData={selectedBillingAddressData} selectedBillingInformationData={selectedBillingInformationData} selectedDeliverySlotData={selectedDeliverySlotData} />
+                                <CheckoutModal isCODAllowed={isCODAllowed} isOpen={isOpen} setIsOpen={setIsOpen} selectedBillingAddressData={selectedBillingAddressData} selectedBillingInformationData={selectedBillingInformationData} selectedDeliverySlotNewData={selectedDeliverySlotNewData} />
 
                                 <div className="cart-fixed-spacing-2"></div>
                                 

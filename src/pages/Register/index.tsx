@@ -30,8 +30,8 @@ const schema = yup
 
 const fields = [
     {
-      placeholder: "Enter name",
-      label: "Name",
+      placeholder: "Enter name / hotel name",
+      label: "Name / Hotel Name",
       type: "text",
       name: "name",
       inputmode: "text",

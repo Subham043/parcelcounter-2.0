@@ -213,3 +213,40 @@
 .product-detail-page-main-cart-quantity .cart-quantity-btn-3 .cart-quantity-modal-btn-3{
     justify-content: flex-end;
 }
+
+.review-container{
+    border: 1px solid #222;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.review-card{
+    padding: 10px 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: start;
+    border-bottom: 1px dashed #ccc;
+}
+.review-card-image{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #ebebeb;
+    color: #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.review-card-content{
+    flex: 1;
+    margin-top: 5px;
+}
+
+.review-card-content h6{
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 1px;
+}

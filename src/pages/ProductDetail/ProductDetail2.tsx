@@ -1,12 +1,12 @@
-import { IonCardHeader, IonCol, IonContent, IonIcon, IonInfiniteScroll, IonInfiniteScrollContent, IonItemDivider, IonPage, IonRow, IonText} from '@ionic/react';
+import { IonButton, IonCardHeader, IonCol, IonContent, IonIcon, IonInfiniteScroll, IonInfiniteScrollContent, IonItemDivider, IonPage, IonRow, IonSpinner, IonText} from '@ionic/react';
 import './ProductDetail.css';
 import MainHeader from '../../components/MainHeader';
 import Slider from '../../components/Slider';
-import { checkmarkDoneOutline, informationCircleOutline, starSharp } from 'ionicons/icons';
+import { arrowBack, arrowForward, arrowUpLeftBox, checkmarkDoneOutline, informationCircleOutline, star, starSharp } from 'ionicons/icons';
 import CommonHeading from '../../components/CommonHeading';
 import { RouteComponentProps } from 'react-router';
 import useSWR from 'swr'
-import { ProductType } from '../../helper/types';
+import { ProductReviewResponseType, ProductType } from '../../helper/types';
 import { api_routes } from '../../helper/routes';
 import { useCart } from '../../hooks/useCart';
 import ProductPrice from '../../components/ProductPrice';
@@ -14,10 +14,11 @@ import { useAxiosPrivate } from '../../hooks/useAxiosPrivate';
 import { useCallback, useRef, useState } from 'react';
 import useSWRInfinite from "swr/infinite";
 import LoadingCard from '../../components/LoadingCard';
-import CartQuantity2 from '../../components/CartQuantity/CartQuantity2';
 import MainProductCard from '../../components/MainProductCard';
 import NoData from '../../components/NoData';
 import CartQuantityBtn from '../../components/CartQuantityBtn';
+import { useAuth } from '../../context/AuthProvider';
+import ProductReviewModal from '../../components/ProductReviewModal';
 
 const PAGE_SIZE = 10;
 interface ProductProps extends RouteComponentProps<{
@@ -69,8 +70,12 @@ const ProductDetailBulkFactor = ({product}:{product:ProductType}) => {
 
 const ProductDetail2: React.FC<ProductProps> = ({match}) => {
   const axiosPrivate = useAxiosPrivate();
+  const {auth} = useAuth();
   const productRef = useRef<HTMLIonInfiniteScrollElement | null>(null);
+  const [page, setPage] = useState<number>(1);
+  const [showModal, setShowModal] = useState<boolean>(false);
   const { data:productData, isLoading:isProductLoading } = useSWR<{product: ProductType}>(api_routes.products + `/${match.params.slug}`);
+  const { data:reviewData, isLoading:isReviewLoading, mutate } = useSWR<ProductReviewResponseType>(api_routes.products + `/${match.params.slug}/reviews?page=${page}&total=5`);
   const getCategoryStr = () => {
       return productData ? productData.product.categories.map(item => item.id).join('_') : null;
   }
@@ -166,6 +171,71 @@ const ProductDetail2: React.FC<ProductProps> = ({match}) => {
                       </div>
                     </div>
                   }
+                  <div className='page-padding section-container pb-1'>
+                    <div className='specification-heading product-detail-page-main-specification-heading mt-1'>
+                      <h6><IonIcon icon={starSharp} /><IonIcon icon={starSharp} /><span>Reviews</span><IonIcon icon={starSharp} /><IonIcon icon={starSharp} /></h6>
+                    </div>
+                    <div className='product-detail-page-main-specification'>
+                        <div className='review-container'>
+                          {isReviewLoading ? <div className='text-center'>
+                            <IonSpinner name="dots" color='dark' />
+                          </div> : <>
+                            {
+                              reviewData && reviewData.data.map((item, i) => <div className='review-card' key={i}>
+                                  <div className='review-card-image'>
+                                    {item.user_name.charAt(0).toUpperCase()}
+                                  </div>
+                                  <div className='review-card-content'>
+                                    <h6 className='m-0'>{item.user_name}</h6>
+                                    <div>
+                                      {
+                                        Array(item.rating).fill(0).map((item, i) => <IonIcon key={i} icon={star} color="warning" />)
+                                      }
+                                    </div>
+                                    {item.comment && <p className='m-0'><i>{item.comment}</i></p>}
+                                  </div>
+                              </div>)
+                            }
+                            {
+                              reviewData && reviewData.data.length===0 && <div className='text-center'>
+                                <p>No reviews found</p>
+                              </div>
+                            }
+                          </>}
+                        </div>
+                    </div>
+                    <IonRow className="w-100 ion-align-items-center ion-justify-content-between">
+                      <IonCol
+                          size="6"
+                          sizeLg='6'
+                          sizeMd='6'
+                          sizeSm='6'
+                          sizeXl='6'
+                          sizeXs='6'
+                          className='text-left p-0'
+                      >
+                          {auth.authenticated && <IonButton size='small' color='dark' className='review-btn' onClick={() => setShowModal(true)}>Write a review</IonButton>}
+                      </IonCol>
+                      <IonCol
+                          size="5"
+                          sizeLg='5'
+                          sizeMd='5'
+                          sizeSm='5'
+                          sizeXl='5'
+                          sizeXs='5'
+                          className='text-right p-0'
+                      >
+                        {(reviewData) && <>
+                          <IonButton size="small" color='dark' disabled={reviewData.meta.current_page===1} onClick={()=>setPage((reviewData.meta.current_page || 0)-1)}>
+                            <IonIcon slot="icon-only" icon={arrowBack}></IonIcon>
+                          </IonButton>
+                          <IonButton size="small" color='dark' disabled={reviewData.meta.current_page===reviewData.meta.last_page} onClick={()=>setPage((reviewData.meta.current_page || 0)+1)}>
+                            <IonIcon slot="icon-only" icon={arrowForward}></IonIcon>
+                          </IonButton>
+                        </>}
+                      </IonCol>
+                    </IonRow>
+                  </div>
                 </div>
                 <CommonHeading text='Related Products' />
                 {
@@ -216,6 +286,7 @@ const ProductDetail2: React.FC<ProductProps> = ({match}) => {
                     </IonRow>
                 </IonItemDivider>
                 <div className="fixed-spacing-2"></div>
+                {auth.authenticated && <ProductReviewModal slug={productData.product.slug} showModal={showModal} setShowModal={setShowModal} mutate={mutate} />}
               </>
             }
         </IonContent>

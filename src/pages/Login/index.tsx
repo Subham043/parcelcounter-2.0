@@ -5,9 +5,10 @@ import { Link } from 'react-router-dom';
 import LoginwithEmail from '../../components/Login/LoginWithEmail';
 import { useState } from 'react';
 import LoginWithPhone from '../../components/Login/LoginWithPhone';
+import LoginWithPhonePassword from '../../components/Login/LoginWithPhonePassword';
 
 const Login: React.FC = () =>{
-    const [loginType, setLoginType] = useState('phone')
+    const [loginType, setLoginType] = useState('phone_otp')
     return <IonPage>
         <MainHeader isMainHeader={true} />
         <IonContent
@@ -24,14 +25,17 @@ const Login: React.FC = () =>{
 
                     <IonCardContent>
                         <IonSegment color="dark" mode='ios' value={loginType} onIonChange={(e)=>setLoginType(e.detail.value as string ?? '')}>
-                            <IonSegmentButton value="phone">
-                                <IonLabel>Login With Phone</IonLabel>
+                            <IonSegmentButton value="phone_otp">
+                                <IonLabel>Phone & OTP</IonLabel>
+                            </IonSegmentButton>
+                            <IonSegmentButton value="phone_password">
+                                <IonLabel>Phone & Password</IonLabel>
                             </IonSegmentButton>
                             <IonSegmentButton value="email">
-                                <IonLabel>Login With Email</IonLabel>
+                                <IonLabel>Email</IonLabel>
                             </IonSegmentButton>
                         </IonSegment>
-                        {loginType==='email' ? <LoginwithEmail /> : <LoginWithPhone />}
+                        {loginType==='email' ? <LoginwithEmail /> : (loginType==='phone_otp' ? <LoginWithPhone /> : <LoginWithPhonePassword />)}
                         <IonGrid className="mt-1">
                             <IonRow className="ion-align-items-center ion-justify-content-between">
                             <IonCol size="6">

@@ -208,6 +208,19 @@ export interface ProductResponseType<> {
   data: ProductType[];
 }
 
+export type ProductReviewType = {
+  id: number;
+  rating: number;
+  user_name: string;
+  comment: string|null;
+  created_at: string;
+}
+
+export interface ProductReviewResponseType<> {
+  meta: MetaType;
+  data: ProductReviewType[];
+}
+
 export interface ChildrenType<> {
   children: ReactNode;
 }
@@ -345,6 +358,15 @@ export interface BillingAddressType<> {
   updated_at: string;
 }
 
+export interface DeliverySlotNewType<> {
+  id: number;
+  name: string;
+  is_cod_allowed: boolean;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
 export interface BillingInformationType<> {
   id: number;
   name: string;
@@ -455,6 +477,11 @@ export interface WebsiteSettingResponseType<> {
 
 export interface BillingInformationResponseType<> {
   data: BillingInformationType[];
+  message: string;
+}
+
+export interface DeliverySlotNewResponseType<> {
+  delivery_slot: DeliverySlotNewType[];
   message: string;
 }
 
