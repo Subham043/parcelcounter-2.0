@@ -2,6 +2,9 @@ type api_routes = {
   login: string;
   login_phone: string;
   login_phone_otp: string;
+  login_phone_otp_local: string;
+  login_phone_otp_web: string;
+  login_phone_otp_auto_read: string;
   login_phone_password: string;
   logout: string;
   register: string;
@@ -66,6 +69,9 @@ export const api_routes: api_routes = {
   login: "/api/v1/auth/login",
   login_phone: "/api/v1/auth/login-phone",
   login_phone_otp: "/api/v1/auth/login-phone-otp",
+  login_phone_otp_local: "/api/v1/auth/login-phone-otp-local",
+  login_phone_otp_web: "/api/v1/auth/login-phone-otp-web",
+  login_phone_otp_auto_read: "/api/v1/auth/login-phone-otp-auto-read",
   login_phone_password: "/api/v1/auth/login-phone-password",
   logout: "/api/v1/auth/logout",
   register: "/api/v1/auth/register",
