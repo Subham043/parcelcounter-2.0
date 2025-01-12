@@ -15,7 +15,7 @@ export interface SmsRetrieverPlugin {
      *
      * @since 0.1.0
      */
-    requestPhoneNumber(): Promise<HintPhoneNumber>;
+    // requestPhoneNumber(): Promise<HintPhoneNumber>;
     /**
      * Start to listen for SMS messages.
      *
@@ -43,14 +43,14 @@ export interface AppSignature {
      */
     signature: string;
 }
-export interface HintPhoneNumber {
-    /**
-     * Phone number user selected
-     *
-     * @since 0.1.0
-     */
-    phoneNumber: string;
-}
+// export interface HintPhoneNumber {
+//     /**
+//      * Phone number user selected
+//      *
+//      * @since 0.1.0
+//      */
+//     phoneNumber: string;
+// }
 export interface RegisterReceiver {
     /**
      * Returns if register receiver started or not.

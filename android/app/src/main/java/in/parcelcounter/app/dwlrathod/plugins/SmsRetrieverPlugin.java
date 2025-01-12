@@ -11,16 +11,11 @@ import com.getcapacitor.annotation.CapacitorPlugin;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginMethod;
-import com.google.android.gms.auth.api.credentials.Credential;
-import com.google.android.gms.auth.api.credentials.Credentials;
-import com.google.android.gms.auth.api.credentials.CredentialsApi;
-import com.google.android.gms.auth.api.credentials.HintRequest;
+
 import com.google.android.gms.auth.api.phone.SmsRetriever;
 import com.google.android.gms.auth.api.phone.SmsRetrieverClient;
 import com.google.android.gms.tasks.Task;
 
-import static android.app.Activity.RESULT_CANCELED;
-import static android.app.Activity.RESULT_OK;
 import static in.parcelcounter.app.dwlrathod.plugins.SMSReceiver.ERROR_KEY;
 import static in.parcelcounter.app.dwlrathod.plugins.SMSReceiver.MESSAGE_KEY;
 import static in.parcelcounter.app.dwlrathod.plugins.SmsRetrieverPlugin.REQUEST_PHONE_NUMBER_REQUEST_CODE;
@@ -30,9 +25,6 @@ public class SmsRetrieverPlugin extends Plugin implements
         SMSReceiver.OTPReceiveListener {
 
     public static final int REQUEST_PHONE_NUMBER_REQUEST_CODE = 23;
-    static final String SOMETHING_WENT_WRONG = "Something went wrong!";
-    static final String PHONE_HINT_USER_CANCELLED = "User cancelled!";
-    static final String PHONE_HINT_NO_HINTS_AVAILABLE = "No hits available!";
 
     @PluginMethod
     public void getAppSignature(PluginCall call) {
@@ -40,63 +32,6 @@ public class SmsRetrieverPlugin extends Plugin implements
         JSObject ret = new JSObject();
         ret.put("signature", signatureHelper.getAppSignatures().get(0));
         call.resolve(ret);
-    }
-
-    @PluginMethod
-    public void requestPhoneNumber(PluginCall call) {
-
-        if (!GooglePlayServicesHelper.isAvailable(getContext())) {
-            call.error(GooglePlayServicesHelper.UNAVAILABLE_ERROR_MESSAGE);
-            return;
-        }
-
-        if (!GooglePlayServicesHelper.hasSupportedVersion(getContext())) {
-            call.error(GooglePlayServicesHelper.UNSUPPORTED_VERSION_ERROR_MESSAGE);
-            return;
-        }
-
-        saveCall(call);
-
-        // Construct hint request dialog
-        HintRequest hintRequest = new HintRequest.Builder().setPhoneNumberIdentifierSupported(true).build();
-        PendingIntent intent = Credentials.getClient(getContext()).getHintPickerIntent(hintRequest);
-
-        try {
-            // Initiate hint request dialog
-            getActivity().startIntentSenderForResult(intent.getIntentSender(), REQUEST_PHONE_NUMBER_REQUEST_CODE, null, 0, 0, 0);
-        } catch (IntentSender.SendIntentException e) {
-            e.printStackTrace();
-        }
-    }
-
-    // Handle result for hint request
-    @Override
-    protected void handleOnActivityResult(int requestCode, int resultCode, Intent data) {
-        super.handleOnActivityResult(requestCode, resultCode, data);
-
-        PluginCall savedCall = getSavedCall();
-        if (savedCall == null) {
-            return;
-        }
-
-        if (requestCode == REQUEST_PHONE_NUMBER_REQUEST_CODE) {
-            if (resultCode == RESULT_OK) {
-                Credential credential = data.getParcelableExtra(Credential.EXTRA_KEY);
-                if (credential != null) {
-                    JSObject info = new JSObject();
-                    info.put("phoneNumber", credential.getId());
-                    savedCall.resolve(info);
-                } else {
-                    savedCall.error(SOMETHING_WENT_WRONG);
-                }
-            } else if (resultCode == RESULT_CANCELED) {
-                savedCall.error(PHONE_HINT_USER_CANCELLED);
-            } else if (resultCode == CredentialsApi.ACTIVITY_RESULT_NO_HINTS_AVAILABLE) {
-                savedCall.error(PHONE_HINT_NO_HINTS_AVAILABLE);
-            } else {
-                savedCall.error(SOMETHING_WENT_WRONG);
-            }
-        }
     }
 
     private SMSReceiver smsReceiver;
