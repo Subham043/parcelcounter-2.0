@@ -182,7 +182,7 @@ const OrderDetail: React.FC<OrderProps> = ({match}) =>{
                                         className='text-right'
                                     >
                                         <IonText>
-                                        <p className='order-detail-price-text'><b><strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{order.order.subtotal}</b></p>
+                                        <p className='order-detail-price-text'><b><strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{order.order.subtotal.toFixed(2)}</b></p>
                                         </IonText>
                                     </IonCol>
                                 </IonRow>
@@ -203,7 +203,7 @@ const OrderDetail: React.FC<OrderProps> = ({match}) =>{
                                             className='text-right'
                                         >
                                             <IonText>
-                                            <p className='order-detail-price-text'><b><strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{item.total_charge_in_amount}</b></p>
+                                            <p className='order-detail-price-text'><b><strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{item.total_charge_in_amount.toFixed(2)}</b></p>
                                             </IonText>
                                         </IonCol>
                                     </IonRow>
@@ -224,7 +224,7 @@ const OrderDetail: React.FC<OrderProps> = ({match}) =>{
                                         className='text-right'
                                     >
                                         <IonText>
-                                        <p className='order-detail-price-text'><b><strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{order.order.total_price}</b></p>
+                                        <p className='order-detail-price-text'><b><strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{order.order.total_price.toFixed(2)}</b></p>
                                         </IonText>
                                     </IonCol>
                                 </IonRow>

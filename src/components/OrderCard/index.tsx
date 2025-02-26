@@ -23,7 +23,7 @@ const OrderCard: React.FC<OrderType> = ({id, total_price, products, statuses, cr
                     className='text-right'
                 >
                     <IonText>
-                        <b className='order-card-product-price'><strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{total_price}</b>
+                        <b className='order-card-product-price'><strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{total_price.toFixed(2)}</b>
                     </IonText>
                 </IonCol>
             </IonRow>

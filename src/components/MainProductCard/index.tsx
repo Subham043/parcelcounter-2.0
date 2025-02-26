@@ -35,7 +35,7 @@ const MainProductCard: React.FC<ProductType> = (props) => {
                     </div>
                     <div className="page-padding product-card-price-container">
                         <div className="col-auto">
-                            <ProductPrice product_prices={props.product_prices} cart_quantity_specification={props.cart_quantity_specification} cart_product_item={cart_product_item} />
+                            <ProductPrice product_prices={props.product_prices} taxes={props.taxes} cart_quantity_specification={props.cart_quantity_specification} cart_product_item={cart_product_item} />
                             <button className='product-price-modal-btn' onClick={()=>setIsOpen(true)}>
                                 <p>Bulk Offer</p>
                                 <IonIcon icon={informationCircle} className='product-price-icon' />
@@ -50,7 +50,7 @@ const MainProductCard: React.FC<ProductType> = (props) => {
             </div>
         </div>
         <IonModal isOpen={isOpen} onDidDismiss={()=>setIsOpen(false)} id={`product-price-main-modal-${props.id}`} className="post-price-modal" initialBreakpoint={1} breakpoints={[0, 1]}>
-            <BulkOffer product_prices={props.product_prices} cart_quantity_specification={props.cart_quantity_specification} cart_product_item={cart_product_item} />
+            <BulkOffer taxes={props.taxes} product_prices={props.product_prices} cart_quantity_specification={props.cart_quantity_specification} cart_product_item={cart_product_item} />
         </IonModal>
     </>;
     

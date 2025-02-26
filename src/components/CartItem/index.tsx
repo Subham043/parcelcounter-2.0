@@ -25,7 +25,7 @@ const CartItem: React.FC<CartType> = ({ product, product_price, amount }) => {
             <IonImg alt="product" className='cart-card-item-img' src={imgError ? '/images/category-all.webp' : product.image} onIonError={()=>{setImgLoading(false); setImgLoadingError(true)}} onIonImgDidLoad={()=>setImgLoading(false)} />
             <IonText color="dark">
                 <p className="cart-card-item-text">{product.name}</p>
-                <p className="cart-card-item-price"><b><strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{product_price.discount_in_price}</b> / {product.cart_quantity_specification}</p>
+                <p className="cart-card-item-price"><b><strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{product_price.discount_in_price.toFixed(2)}</b> / {product.cart_quantity_specification}</p>
             </IonText>
             </IonCol>
             <IonCol
@@ -38,7 +38,7 @@ const CartItem: React.FC<CartType> = ({ product, product_price, amount }) => {
                 size="2"
                 className='text-right'
             >
-                <p className='cart-text'><b><strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{amount}</b></p>
+                <p className='cart-text'><b><strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{amount.toFixed(2)}</b></p>
             </IonCol>
         </IonRow>
     </IonItemDivider>

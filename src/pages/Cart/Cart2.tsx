@@ -206,7 +206,7 @@ const Cart2: React.FC = () => {
                                                         className='text-right'
                                                     >
                                                         <IonText>
-                                                        <p className='cart-text'><b><strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{cart.cart_subtotal}</b></p>
+                                                        <p className='cart-text'><b><strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{cart.cart_subtotal.toFixed(2)}</b></p>
                                                         </IonText>
                                                     </IonCol>
                                                 </IonRow>
@@ -227,7 +227,7 @@ const Cart2: React.FC = () => {
                                                             className='text-right'
                                                         >
                                                             <IonText>
-                                                            <p className='cart-text'><b><strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{item.total_charge_in_amount}</b></p>
+                                                            <p className='cart-text'><b><strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{item.total_charge_in_amount.toFixed(2)}</b></p>
                                                             </IonText>
                                                         </IonCol>
                                                     </IonRow>
@@ -258,7 +258,7 @@ const Cart2: React.FC = () => {
                                                         className='text-right'
                                                     >
                                                         <IonText>
-                                                        <p className='cart-text'><b><strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{cart.total_price}</b></p>
+                                                        <p className='cart-text'><b><strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{cart.total_price.toFixed(2)}</b></p>
                                                         </IonText>
                                                     </IonCol>
                                                 </IonRow>
@@ -305,7 +305,7 @@ const Cart2: React.FC = () => {
                                                                 className='text-left p-0'
                                                             >
                                                                 <div>
-                                                                    {cart.cart.length} {cart.cart.length===1 ? 'Item' : 'Items'} | <strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{cart.total_price}
+                                                                    {cart.cart.length} {cart.cart.length===1 ? 'Item' : 'Items'} | <strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{cart.total_price.toFixed(2)}
                                                                 </div>
                                                             </IonCol>
                                                             <IonCol
@@ -339,7 +339,7 @@ const Cart2: React.FC = () => {
                                                             className='text-left p-0'
                                                         >
                                                             <div>
-                                                                {cart.cart.length} {cart.cart.length===1 ? 'Item' : 'Items'} | <strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{cart.total_price}
+                                                                {cart.cart.length} {cart.cart.length===1 ? 'Item' : 'Items'} | <strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{cart.total_price.toFixed(2)}
                                                             </div>
                                                         </IonCol>
                                                         <IonCol

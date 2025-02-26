@@ -167,6 +167,8 @@ export interface ProductImageType<> {
 export interface ProductPriceType<> {
   id: number;
   discount: number;
+  discounted_price: number;
+  tax_in_price: number;
   discount_in_price: number;
   min_quantity: number;
   price: number;
@@ -201,6 +203,7 @@ export interface ProductType<> {
   product_colors: ProductColorType[];
   product_prices: ProductPriceType[];
   product_images: ProductImageType[];
+  taxes: OrderProductTaxType[];
 }
 
 export interface ProductResponseType<> {
@@ -254,15 +257,6 @@ export interface CartChargeType<> {
   total_charge_in_amount: number;
   is_active: boolean;
   is_percentage: boolean;
-}
-
-export interface CartTaxType<> {
-  created_at: string;
-  updated_at: string;
-  tax_name: string;
-  tax_slug: string;
-  id: number;
-  tax_in_percentage: number;
 }
 
 export interface CartCouponType<> {
@@ -397,10 +391,21 @@ export interface OrderStatusType<> {
   id: number;
 }
 
+export interface OrderProductTaxType<> {
+  created_at: string;
+  updated_at: string;
+  tax_slug: string;
+  tax_name: string;
+  id: number;
+  tax_value: number;
+}
+
 export interface OrderProductType<> {
   id: number;
   amount: number;
   discount: number;
+  discounted_price: number;
+  tax_in_price: number;
   discount_in_price: number;
   min_quantity: number;
   price: number;
@@ -410,6 +415,7 @@ export interface OrderProductType<> {
   name: string;
   image: string;
   unit: string;
+  taxes: OrderProductTaxType[];
   created_at: string;
   updated_at: string;
 }
@@ -438,7 +444,6 @@ export interface OrderType<> {
   tax_slug: string;
   total_charges: number;
   total_price: number;
-  total_tax: number;
   created_at: string;
   updated_at: string;
   charges: OrderChargeType[];

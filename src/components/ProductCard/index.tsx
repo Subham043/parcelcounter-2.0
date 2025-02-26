@@ -31,7 +31,7 @@ const ProductCard: React.FC<ProductType> = (props) => {
                 <IonText color="dark">
                     <p className="product-card-text">{props.name}</p>
                     <IonButton className='product-price-modal-btn' fill="clear" onClick={()=>setIsOpen(true)}>
-                        <ProductPrice product_prices={props.product_prices} cart_quantity_specification={props.cart_quantity_specification} cart_product_item={cart_product_item} />
+                        <ProductPrice taxes={props.taxes} product_prices={props.product_prices} cart_quantity_specification={props.cart_quantity_specification} cart_product_item={cart_product_item} />
                         <IonIcon icon={informationCircle} className='product-price-icon' />
                     </IonButton>
                 </IonText>
@@ -39,7 +39,7 @@ const ProductCard: React.FC<ProductType> = (props) => {
             </IonCardHeader>
         </IonCard>
         <IonModal isOpen={isOpen} onDidDismiss={()=>setIsOpen(false)} id={`product-price-main-modal-${props.id}`} className="post-price-modal" initialBreakpoint={1} breakpoints={[0, 1]}>
-            <BulkOffer product_prices={props.product_prices} cart_quantity_specification={props.cart_quantity_specification} cart_product_item={cart_product_item} />
+            <BulkOffer taxes={props.taxes} product_prices={props.product_prices} cart_quantity_specification={props.cart_quantity_specification} cart_product_item={cart_product_item} />
         </IonModal>
     </>;
     

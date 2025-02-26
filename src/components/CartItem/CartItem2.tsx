@@ -29,13 +29,13 @@ const CartItem2: React.FC<CartType> = ({ product, product_price, amount }) => {
                     <IonLabel className="cart-card-item-text">
                         <p>{product.name}</p>
                     </IonLabel>
-                    <p className="cart-card-item-price"><b><strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{product_price.discount_in_price}</b> / {product.cart_quantity_specification}</p>
+                    <p className="cart-card-item-price"><b><strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{product_price.discount_in_price.toFixed(2)}</b> / {product.cart_quantity_specification}</p>
                 </div>
             </div>
             <div className="cart-item-quantity">
                 {/* <CartQuantity quantity={quantity} min_cart_quantity={product.min_cart_quantity} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} loading={cartItemLoading} /> */}
                 <CartQuantityBtn quantity={quantity} color={color} min_cart_quantity={product.min_cart_quantity} cart_quantity_interval={product.cart_quantity_interval} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} loading={cartItemLoading} colors={product.product_colors ?? []} product_id={product.id} product_name={product.name} />
-                <p className='cart-item-total-price'><strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{amount}</p>
+                <p className='cart-item-total-price'><strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{amount.toFixed(2)}</p>
             </div>
         </div>
     </div>

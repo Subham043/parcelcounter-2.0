@@ -187,7 +187,7 @@ export function useCart({
             setCartItemLoading(true);
             try {
               const response = await axiosPrivate.post(api_routes.cart_create, data);
-              updateCart({cart: [...cart.cart, response.data.cart], cart_charges: [...response.data.cart_charges], coupon_applied: response.data.coupon_applied, tax: response.data.tax, cart_subtotal:response.data.cart_subtotal, discount_price: response.data.discount_price, total_charges: response.data.total_charges, total_price: response.data.total_price, total_tax: response.data.total_tax});
+              updateCart({cart: [...cart.cart, response.data.cart], cart_charges: [...response.data.cart_charges], coupon_applied: response.data.coupon_applied, cart_subtotal:response.data.cart_subtotal, discount_price: response.data.discount_price, total_charges: response.data.total_charges, total_price: response.data.total_price});
               toastSuccess("Item added to cart.");
             } catch (error: any) {
               console.log(error);
@@ -213,7 +213,7 @@ export function useCart({
             amount: Number(data.amount.toFixed(2)),
           }];
           const cart_price_total = Number(main_cart.reduce((total:number, next:CartType) => {return total + next.amount}, 0).toFixed(2))
-          updateBasicCart({cart: main_cart, cart_charges: [...basicCart.cart_charges], coupon_applied: basicCart.coupon_applied, tax: basicCart.tax, cart_subtotal:cart_price_total, discount_price: basicCart.discount_price, total_charges: basicCart.total_charges, total_price: cart_price_total, total_tax: basicCart.total_tax});
+          updateBasicCart({cart: main_cart, cart_charges: [...basicCart.cart_charges], coupon_applied: basicCart.coupon_applied, cart_subtotal:cart_price_total, discount_price: basicCart.discount_price, total_charges: basicCart.total_charges, total_price: cart_price_total});
           toastSuccess("Item added to cart.");
         }
     }
@@ -228,7 +228,7 @@ export function useCart({
               });
               const old_cart = cart.cart;
               old_cart[cartItemIndex] = response.data.cart;
-              updateCart({cart: [...old_cart], cart_charges: [...response.data.cart_charges], coupon_applied: response.data.coupon_applied, tax: response.data.tax, cart_subtotal:response.data.cart_subtotal, discount_price: response.data.discount_price, total_charges: response.data.total_charges, total_price: response.data.total_price, total_tax: response.data.total_tax});
+              updateCart({cart: [...old_cart], cart_charges: [...response.data.cart_charges], coupon_applied: response.data.coupon_applied, cart_subtotal:response.data.cart_subtotal, discount_price: response.data.discount_price, total_charges: response.data.total_charges, total_price: response.data.total_price});
               // toastSuccess("Item quantity updated in cart.");
             } catch (error: any) {
               console.log(error);
@@ -258,7 +258,7 @@ export function useCart({
             amount: Number(data.amount.toFixed(2)),
           };
           const cart_price_total = Number(old_cart.reduce((total:number, next:CartType) => {return total + next.amount}, 0).toFixed(2))
-          updateCart({cart: [...old_cart], cart_charges: [...basicCart.cart_charges], coupon_applied: basicCart.coupon_applied, tax: basicCart.tax, cart_subtotal:cart_price_total, discount_price: basicCart.discount_price, total_charges: basicCart.total_charges, total_price: cart_price_total, total_tax: basicCart.total_tax});
+          updateCart({cart: [...old_cart], cart_charges: [...basicCart.cart_charges], coupon_applied: basicCart.coupon_applied, cart_subtotal:cart_price_total, discount_price: basicCart.discount_price, total_charges: basicCart.total_charges, total_price: cart_price_total});
         }
     }
     
@@ -268,7 +268,7 @@ export function useCart({
             try {
               const response = await axiosPrivate.delete(api_routes.cart_delete + `/${data}`);
                 const removedItemArray = cart.cart.filter(item => item.id !== data);
-                updateCart({cart: [...removedItemArray], cart_charges: [...response.data.cart_charges], coupon_applied: response.data.coupon_applied, tax: response.data.tax, cart_subtotal:response.data.cart_subtotal, discount_price: response.data.discount_price, total_charges: response.data.total_charges, total_price: response.data.total_price, total_tax: response.data.total_tax});
+                updateCart({cart: [...removedItemArray], cart_charges: [...response.data.cart_charges], coupon_applied: response.data.coupon_applied, cart_subtotal:response.data.cart_subtotal, discount_price: response.data.discount_price, total_charges: response.data.total_charges, total_price: response.data.total_price});
                 toastSuccess("Item removed from cart.");
             } catch (error: any) {
               console.log(error);
@@ -285,7 +285,7 @@ export function useCart({
         if(!auth.authenticated){
           const removedItemArray = basicCart.cart.filter(item => item.product.id !== data);
           const cart_price_total = Number(removedItemArray.reduce((total:number, next:CartType) => {return total + next.amount}, 0).toFixed(2))
-          updateCart({cart: [...removedItemArray], cart_charges: [...basicCart.cart_charges], coupon_applied: basicCart.coupon_applied, tax: basicCart.tax, cart_subtotal:cart_price_total, discount_price: basicCart.discount_price, total_charges: basicCart.total_charges, total_price: cart_price_total, total_tax: basicCart.total_tax});
+          updateCart({cart: [...removedItemArray], cart_charges: [...basicCart.cart_charges], coupon_applied: basicCart.coupon_applied, cart_subtotal:cart_price_total, discount_price: basicCart.discount_price, total_charges: basicCart.total_charges, total_price: cart_price_total});
           toastSuccess("Item removed from cart.");
         }
     }

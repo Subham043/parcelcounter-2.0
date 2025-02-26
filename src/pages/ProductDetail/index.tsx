@@ -30,7 +30,7 @@ const ProductDetailCartQuantity = ({product}:{product:ProductType}) => {
 
 const ProductDetailPrice = ({product}:{product:ProductType}) => {
   const {cart_product_item} = useCart({id:product.id, product, product_prices:product.product_prices, min_cart_quantity:product.min_cart_quantity, cart_quantity_interval:product.cart_quantity_interval});
-  return <ProductPrice product_prices={product.product_prices} cart_quantity_specification={product.cart_quantity_specification} cart_product_item={cart_product_item} />
+  return <ProductPrice taxes={product.taxes} product_prices={product.product_prices} cart_quantity_specification={product.cart_quantity_specification} cart_product_item={cart_product_item} />
 }
 
 const ProductDetailBulkFactor = ({product}:{product:ProductType}) => {
@@ -52,11 +52,11 @@ const ProductDetailBulkFactor = ({product}:{product:ProductType}) => {
                         (cart_product_item().length>0 && item.min_quantity===cart_product_item()[0].product_price.min_quantity) ?
                         <div className="bulk-offer-text bulk-offer-text-active">
                             <IonIcon icon={checkmarkDoneOutline} /> 
-                            <span>Buy {item.min_quantity} {product.cart_quantity_specification} or more at <strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{item.discount_in_price} / {product.cart_quantity_specification}</span>
+                            <span>Buy {item.min_quantity} {product.cart_quantity_specification} or more at <strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{item.discount_in_price.toFixed(2)} / {product.cart_quantity_specification}</span>
                         </div>:
                         <div className="bulk-offer-text">
                             <IonIcon icon={informationCircleOutline} /> 
-                            <span>Buy {item.min_quantity} {product.cart_quantity_specification} or more at <strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{item.discount_in_price} / {product.cart_quantity_specification}</span>
+                            <span>Buy {item.min_quantity} {product.cart_quantity_specification} or more at <strong style={{ fontFamily: 'sans-serif'}}>₹</strong>{item.discount_in_price.toFixed(2)} / {product.cart_quantity_specification}</span>
                         </div>
                     }
                 </li>)

@@ -32,7 +32,7 @@ const PreviouseOrderItem: React.FC<ProductType> = (props) => {
                             <p>{props.name}</p>
                         </IonLabel>
                         <div className="order-product-card-price-container">
-                            <ProductPrice product_prices={props.product_prices} cart_quantity_specification={props.cart_quantity_specification} cart_product_item={cart_product_item} />
+                            <ProductPrice taxes={props.taxes} product_prices={props.product_prices} cart_quantity_specification={props.cart_quantity_specification} cart_product_item={cart_product_item} />
                         </div>
                     </div>
                 </div>
